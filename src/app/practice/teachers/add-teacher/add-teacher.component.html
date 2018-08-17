@@ -1,0 +1,46 @@
+<!-- Add student feilds 000 -->
+<mat-card class="add-student-form-card">
+  <h4>Create New Teacher</h4>
+
+  <form class="example-form">
+
+    <mat-form-field class="half-width">
+      <mat-select placeholder="Class Incharge">
+        <mat-option *ngFor="let classIncharge of classes" [value]="classIncharge">
+          {{classIncharge}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+      <mat-select placeholder="Designation">
+        <mat-option *ngFor="let designation of designations" [value]="designation">
+          {{designation}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" type="text" required aria-label="State">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Father Name" required>
+    </mat-form-field>
+    <mat-form-field class="add-student-form-card">
+      <input matInput type="text" placeholder="Address" required>
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput type="number" placeholder="Phone">
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <button mat-stroked-button color="accent" class="half-width">Add New Teacher</button>
+    <button mat-stroked-button color="accent" routerLink="/teacher-list" class="half-width">Back to Teachers</button>
+  </form>
+</mat-card>
+<!-- 000 -->

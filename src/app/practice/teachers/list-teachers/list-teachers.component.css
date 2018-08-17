@@ -1,0 +1,21 @@
+.add-new-teacher-float-right{
+    float: right;
+}
+/* Structure */
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.example-icon {
+padding: 14px 14px;
+}
+
+.right-bottom-absolute{
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+}

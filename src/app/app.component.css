@@ -1,0 +1,42 @@
+.example-icon {
+    padding: 0 14px;
+}
+  
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+#myMenu{
+  background-color: rgba(226, 23, 90, 0.9);
+  width: 99%;
+
+  z-index: 5000;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+/* to change the font style to arial for heading */
+.mat-card-font-family{
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+/* class to show the active link */
+.active-link{
+  background-color: red;
+  border: 1px solid rbg(255, 100, 0);
+}
+
+/* class to fix the menu at top */
+.fixed-top-menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+}

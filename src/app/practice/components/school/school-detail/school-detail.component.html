@@ -1,0 +1,60 @@
+<mat-card class="add-student-form-card">
+  <h4>School Detail</h4>
+
+  <table class="full-width mat-table" style="width: 100%">
+    <tr class="mat-row ng-star-inserted">
+      <th class="mat-header-row ng-star-inserted">Name: </th>
+      <th class="mat-header-row ng-star-inserted">Description</th>
+    </tr>
+    <tr class="mat-row ng-star-inserted">
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">School Name</td>
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">{{schoolService.selectedSchool.name}}</td>
+    </tr>
+    <tr class="mat-row ng-star-inserted">
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">EMIS Code</td>
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">{{schoolService.selectedSchool.EMIS}}</td>
+    </tr>
+    <tr class="mat-row ng-star-inserted">
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">Post Office</td>
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">{{schoolService.selectedSchool.postOffice}}</td>
+    </tr>
+    <tr class="mat-row ng-star-inserted">
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">Tehsil</td>
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">{{schoolService.selectedSchool.tehsil}}</td>
+    </tr>
+    <tr class="mat-row ng-star-inserted">
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">District</td>
+      <td class="mat-cell cdk-column-name mat-column-name ng-star-inserted">{{schoolService.selectedSchool.district}}</td>
+    </tr>
+  </table>
+
+  <!-- <form #schoolForm="ngForm" (onSubmit)="onSubmit(schoolForm)" class="example-form">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="schoolService.selectedSchool.$key">
+    <mat-form-field class="example-full-width">
+      <input matInput name="name" #name="ngModel" [(ngModel)]="schoolService.selectedSchool.name" placeholder="Name of Schoool"
+        type="text" required aria-label="State">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput name="EMIS" #EMIS="ngModel" [(ngModel)]="schoolService.selectedSchool.EMIS" type="number" placeholder="EMIS Code"
+        required>
+    </mat-form-field>
+    <mat-form-field class="add-student-form-card">
+      <input matInput name="tehsil" #tehsil="ngModel" [(ngModel)]="schoolService.selectedSchool.tehsil" placeholder="Tehsil" required>
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput name="district" #district="ngModel" [(ngModel)]="schoolService.selectedSchool.district" placeholder="District">
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput name="postOffice" #postOffice="ngModel" [(ngModel)]="schoolService.selectedSchool.postOffice" placeholder="Post Office">
+    </mat-form-field>
+
+    <br>
+    <button mat-stroked-button color="accent" class="half-width" type="submit" (click)="onSubmit(schoolForm)" [disabled]="!schoolForm.valid">Add New School</button>
+    <button mat-stroked-button color="accent" routerLink="/schools-list" class="half-width">Back to Schools</button>
+  </form> -->
+
+  <div class="example-form">
+    <button mat-stroked-button color="accent" class="half-width" type="submit" routerLink="/add-school" >Update School</button>
+    <button mat-stroked-button color="accent" routerLink="/schools-list" class="half-width">Back to Schools</button>
+  </div>
+</mat-card>

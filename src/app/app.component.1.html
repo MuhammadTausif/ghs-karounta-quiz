@@ -1,0 +1,90 @@
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <span>School Information System | GHS Karounta</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon">favorite</mat-icon>
+        <mat-icon class="example-icon">delete</mat-icon>
+
+        <!-- MatMenu *start* -->
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item>Help</button>
+        </mat-menu>
+        <!-- *end* -->
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- This is sticky menu. -->
+<!-- <mat-card id="myMenu" ng-sticky [offSet]="0" [addClass]="'is-sticky'" color="primary" class="mat-primary">
+    <button mat-button>Home</button>
+    <button mat-button>Student</button>
+    <button mat-button>Teachers</button>
+    <button mat-button>Tests</button>
+    <button mat-button>Reports</button>
+</mat-card> -->
+
+
+<!-- 000 -->
+<!-- <mat-menu #appMenu1="matMenu" yPosition="above">
+    <button mat-menu-item>Settings</button>
+    <button mat-menu-item>Help</button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="appMenu1">
+    <mat-icon>more_vert</mat-icon>
+</button> -->
+<!-- 000 -->
+<!-- 111 -->
+<!-- <mat-menu #appMenu2="matMenu">
+    <ng-template matMenuContent let-name="name">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Log off {{name}}</button>
+    </ng-template>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="appMenu2" [matMenuTriggerData]="{name: 'Sally'}">
+    <mat-icon>more_vert</mat-icon>
+</button>
+
+<button mat-icon-button [matMenuTriggerFor]="appMenu2" [matMenuTriggerData]="{name: 'Bob'}">
+    <mat-icon>more_vert</mat-icon>
+</button> -->
+<!-- 111 -->
+
+<!-- 222 -->
+<!-- <mat-toolbar color="primary">
+    <span>Application Title</span> -->
+
+<!-- This fills the remaining space of the current row -->
+<!-- <span class="example-fill-remaining-space"></span>
+
+    <span>Right Aligned Text</span>
+</mat-toolbar> -->
+<!-- 222 -->
+
+<mat-tab-group color="accent" backgroundColor="">
+    <mat-tab label="Students" routerLink="/classes" (onClick)="alert('Done')">
+        <router-outlet></router-outlet>
+    </mat-tab>
+    <mat-tab label="Teachers">
+        <router-outlet name='teachers-outlet'></router-outlet>
+        <app-list-teachers></app-list-teachers>
+    </mat-tab>
+    <mat-tab label="Tests"> Content 3 </mat-tab>
+    <mat-tab label="Reports"> Content 3 </mat-tab>
+    <mat-tab label="Firebase">
+        <app-angular6-fire-base2-setup></app-angular6-fire-base2-setup>
+    </mat-tab>
+    <mat-tab label="Routing and Navigation">
+        <nav>
+            <a mat-button color="accent" routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
+            <a mat-button color="accent" routerLink="/heroes" routerLinkActive="active">Heroes</a>
+            <a mat-button color="accent" [routerLink]="['', { outlets: { secondry: ['foo'] } }]">Secondry Routs</a>
+        </nav>
+        <router-outlet name="secondry"></router-outlet>
+    </mat-tab>
+</mat-tab-group>

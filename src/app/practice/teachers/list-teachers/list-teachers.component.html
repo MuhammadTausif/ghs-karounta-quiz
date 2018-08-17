@@ -1,0 +1,47 @@
+<div class="list-header">
+  <h4>List of Teachers</h4>
+  <button mat-stroked-button color="accent" routerLink="/add-teacher">Add new Teacher</button>
+</div>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Teacher">
+</mat-form-field>
+
+<table mat-table [dataSource]="teachersDataSource" class="mat-elevation-z8">
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Designation </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="classIncharge">
+    <th mat-header-cell *matHeaderCellDef> Class Incharge </th>
+    <td mat-cell *matCellDef="let element"> {{element.classIncharge}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon class="example-icon" class="example-icon" routerLink="/add-teacher">edit</mat-icon>
+      <mat-icon class="example-icon" class="example-icon" onclick="alert('Delete it?')">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Floating button at right bottom corner -->
+<button mat-fab class="right-bottom-absolute" routerLink="/add-teacher">
+  <mat-icon aria-label="Add new Teacher">add</mat-icon>
+</button>

@@ -1,0 +1,59 @@
+<div class="list-header">
+  <h4>List of Schools</h4>
+  <button mat-stroked-button color="accent" routerLink="/add-school">Add New School</button>
+</div>
+
+<table mat-table [dataSource]="schoolsList" class="mat-elevation-z8 full-width">
+
+
+  <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> School Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="EMIS">
+    <th mat-header-cell *matHeaderCellDef> EMIS Code </th>
+    <td mat-cell *matCellDef="let element"> {{element.EMIS}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="tehsil">
+    <th mat-header-cell *matHeaderCellDef> Tehsil </th>
+    <td mat-cell *matCellDef="let element"> {{element.tehsil}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon class="example-icon" (click)="onDetail(element)" >info</mat-icon>
+      <mat-icon class="example-icon" (click)="onEdit(element)">edit</mat-icon>
+      <mat-icon class="example-icon" (click)="onDelete(element.$key)">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- <h6 class="text-center">Schools</h6><br/>
+<table class="table table-sm table-hover">
+  <tr *ngFor="let employee of schoolsList">
+      <td>{{employee.name}}</td>
+      <td>{{employee.EMIS}}</td>
+      <td>
+        <a class="btn" (click)="onEdit(employee)">
+          <i class="fa fa-pencil-square-o"></i>
+        </a>
+        <a class="btn" (click)="onDelete(employee.$key)">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </td>
+  </tr>
+</table> -->

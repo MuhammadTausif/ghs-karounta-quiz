@@ -1,0 +1,27 @@
+<mat-card class="add-student-form-card">
+  <h4> {{submitAction}} School</h4>
+  <form #schoolForm="ngForm" (onSubmit)="onSubmit(schoolForm)" class="example-form">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="schoolService.selectedSchool.$key">
+    <mat-form-field class="example-full-width">
+      <input matInput name="name" #name="ngModel" [(ngModel)]="schoolService.selectedSchool.name" placeholder="Name of Schoool"
+        type="text" required aria-label="State">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput name="EMIS" #EMIS="ngModel" [(ngModel)]="schoolService.selectedSchool.EMIS" type="number" placeholder="EMIS Code"
+        required>
+    </mat-form-field>
+    <mat-form-field class="add-student-form-card">
+      <input matInput name="tehsil" #tehsil="ngModel" [(ngModel)]="schoolService.selectedSchool.tehsil" placeholder="Tehsil" required>
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput name="district" #district="ngModel" [(ngModel)]="schoolService.selectedSchool.district" placeholder="District">
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <input matInput name="postOffice" #postOffice="ngModel" [(ngModel)]="schoolService.selectedSchool.postOffice" placeholder="Post Office">
+    </mat-form-field>
+
+    <br>
+    <button mat-stroked-button color="accent" class="half-width" type="submit" (click)="onSubmit(schoolForm)" [disabled]="!schoolForm.valid">{{submitAction}} School</button>
+    <button mat-stroked-button color="accent" routerLink="/schools-list" class="half-width">Back to Schools</button>
+  </form>
+</mat-card>

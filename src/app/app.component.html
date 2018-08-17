@@ -1,0 +1,69 @@
+<!-- <mat-toolbar color="warn">
+    <mat-toolbar-row>
+        <span>School Information System | GHS Karounta</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar-row>
+</mat-toolbar> -->
+<!-- <mat-toolbar color="primary" class="fixed-top-menu">
+    <button mat-button routerLink="/classes" routerLinkActive="active-link">Students</button>
+    <button mat-button routerLink="/teacher-list" routerLinkActive="active-link">Teachers</button>
+    <button mat-button routerLink="/classes-list-for-tests" routerLinkActive="active-link">Tests</button>
+    <button mat-button [matMenuTriggerFor]="reportsMenu" routerLinkActive="active-link">Reports</button>
+    <button mat-button [matMenuTriggerFor]="practiceMenu" routerLinkActive="active-link">Practice</button>
+    <span class="example-spacer"></span>
+
+    <mat-menu #reportsMenu="matMenu">
+        <button mat-menu-item>School Report</button>
+        <button mat-menu-item>Students</button>
+    </mat-menu>
+
+    <mat-menu #practiceMenu="matMenu">
+        <button mat-menu-item routerLink="/firebase-in-action">Firebase in Action</button>
+        <button mat-menu-item routerLink="/add-item">Add item</button>
+        <button mat-menu-item routerLink="/view-item">View item</button>
+    </mat-menu>
+
+    <mat-icon class="example-icon">favorite</mat-icon>
+    <mat-icon class="example-icon">delete</mat-icon> -->
+
+    <!-- MatMenu *start* -->
+    <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+    </mat-menu> -->
+    <!-- *end* -->
+
+<!-- </mat-toolbar> -->
+
+
+<div class="mat-card-font-family">
+    <!-- <app-my-nav></app-my-nav> -->
+    <app-main></app-main>
+    <!-- <router-outlet></router-outlet> -->
+</div>
+
+<!-- <mat-tab-group color="accent" backgroundColor="">
+    <mat-tab label="Students" routerLink="/classes" (onClick)="alert('Done')">
+        <router-outlet></router-outlet>
+    </mat-tab>
+    <mat-tab label="Teachers">
+        <router-outlet name='teachers-outlet'></router-outlet>
+        <app-list-teachers></app-list-teachers>
+    </mat-tab>
+    <mat-tab label="Tests"> Content 3 </mat-tab>
+    <mat-tab label="Reports"> Content 3 </mat-tab>
+    <mat-tab label="Firebase">
+        <app-angular6-fire-base2-setup></app-angular6-fire-base2-setup>
+    </mat-tab>
+    <mat-tab label="Routing and Navigation">
+        <nav>
+            <a mat-button color="accent" routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
+            <a mat-button color="accent" routerLink="/heroes" routerLinkActive="active">Heroes</a>
+            <a mat-button color="accent" [routerLink]="['', { outlets: { secondry: ['foo'] } }]">Secondry Routs</a>
+        </nav>
+        <router-outlet name="secondry"></router-outlet>
+    </mat-tab>
+</mat-tab-group> -->

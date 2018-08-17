@@ -1,0 +1,22 @@
+<mat-card>
+  <div class="example-container">
+
+    <div style="color: accent;">
+      <h3>{{title}}</h3>
+      <h4>{{description}}</h4>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Enter Item" id="item" required [(ngModel)]="itemValue" name="item">
+      </mat-form-field>
+      <button mat-raised-button type="submit">
+        Submit
+        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+      </button>
+    </form>
+
+    <h4>Content from Firebase</h4>
+    <pre *ngFor="let item of items | async">{{item.content}}</pre>
+  </div>
+</mat-card>

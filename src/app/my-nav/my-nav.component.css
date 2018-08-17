@@ -1,0 +1,26 @@
+.sidenav-container {
+  height: 100%;
+  margin-top:10px;
+}
+
+.sidenav {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+/* class to show the active link */
+.active-link{
+  background-color: rgb(168, 184, 253);
+  border: 1px solid rbg(255, 100, 0);
+}
+
+/* Classes to make button full width */
+.nav-full-width-button{
+  width: 98%;
+  margin: 1%;
+}

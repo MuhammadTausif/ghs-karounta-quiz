@@ -1,0 +1,31 @@
+.classes-table {
+    width: 99%;
+    overflow: scroll;
+}
+
+/* main div for classes to contain button and heading 4 000 */
+.main-student-button-div{
+    padding: 3px;
+    width: 100%;
+}
+
+/* button floating right with reasonable margin */
+.main-student-button-div > button{
+    float: right;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+/* heading 4 floating left */
+.main-student-button-div > h4{
+    float: left;
+}
+/* 000 */
+
+/* scrollable div that is used to hide the side scroll bar */
+.scrollable-div{
+    overflow:auto;
+     height: 100%; 
+     width: 100%; 
+     padding: 10px
+}

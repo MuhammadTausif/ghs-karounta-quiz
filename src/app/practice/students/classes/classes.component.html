@@ -1,0 +1,41 @@
+<div class="main-student-button-div">
+  <h4>List of Classes</h4>
+  <button mat-stroked-button color="accent" routerLink="/add-student">Add new Student</button>
+</div>
+<div class="scrollable-div">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 classes-table">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Number Column -->
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Class Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Enrollled Student Column -->
+    <ng-container matColumnDef="students">
+      <th mat-header-cell *matHeaderCellDef> Enrolled Students </th>
+      <td mat-cell *matCellDef="let element"> {{element.students}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="accent" routerLink="/student-list">Open</button>
+        <!-- {{element.action}} -->
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

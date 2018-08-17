@@ -1,0 +1,12 @@
+<form style="width:100%" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+  <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="employeeService.selectedEmployee.$key">
+
+  <mat-form-field>
+    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Full Name" required>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Father Name" required>
+  </mat-form-field>
+</form>

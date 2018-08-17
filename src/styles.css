@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Classes for header of lists 000 */
+
+/* floating heading 4 to left */
+.list-header> h4{
+    float: left;
+}
+
+/* floating button to right */
+.list-header> button{
+    float: right;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+/* 000 */
+
+/* Classes for Add new record as center card 111 */
+
+/* Center card for new record */
+.add-new-record-form-card{
+    width: 500px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+/* 111 */
+
+/* To set the width 100% 222 */
+.full-width{
+    widows: 100%;
+}
+/* 222 */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "theme";
+
+
+/* This is for SCSS
+// Material 2 theme
+// Active icon color in list nav
+ mat-list {
+  [mat-list-item].active {
+    background-color: mat-color($accent);
+    color: mat-color($accent, default-contrast)
+    mat-icon {
+
+    }
+    mat-icon[mat-list-icon] {
+      color: mat-color($accent);
+    }
+  }
+} */
+
+
+/* This is to fill the space between title and notification icon *333* */
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+/* 333 */

@@ -1,0 +1,61 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/classes" routerLinkActive="active-link">Students</a>
+      <a mat-list-item routerLink="/teacher-list" routerLinkActive="active-link">Teachers</a>
+      <a mat-list-item routerLink="/classes-list-for-tests" routerLinkActive="active-link">Tests</a>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Students
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item>Add Students</a>
+        <a mat-list-item>Open Classes</a>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Tests
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item>Add Test</a>
+        <a mat-list-item>Open Classes</a>
+        <a mat-list-item>Open Subject</a>
+      </mat-expansion-panel>
+
+
+    </mat-nav-list>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="reportsMenu" routerLinkActive="active-link" class="nav-full-width-button">Reports</button>
+    <button mat-raised-button color="primary"  [matMenuTriggerFor]="practiceMenu" routerLinkActive="active-link" class="nav-full-width-button">Practice</button>
+    <span class="example-spacer"></span>
+
+    <mat-menu #reportsMenu="matMenu">
+      <button mat-menu-item>School Report</button>
+      <button mat-menu-item>Students</button>
+    </mat-menu>
+
+    <mat-menu #practiceMenu="matMenu">
+      <button mat-menu-item routerLink="/firebase-in-action">Firebase in Action</button>
+      <button mat-menu-item routerLink="/add-item">Add item</button>
+      <button mat-menu-item routerLink="/view-item">View item</button>
+      <button mat-menu-item routerLink="/employees">Employees</button>
+    </mat-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>School Information System | GHS Karounta</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div style="margin: 10px; overflow:scroll; height: 500px; ">
+    <router-outlet></router-outlet>
+    <!-- </div> -->
+  </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
