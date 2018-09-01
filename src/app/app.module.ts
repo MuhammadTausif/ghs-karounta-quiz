@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http/';
 
 import { AppComponent } from './app.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatTabsModule, MatButtonToggleModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatDividerModule, MatDialogModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatTabsModule, MatButtonToggleModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatDividerModule, MatDialogModule, MatRadioModule } from '@angular/material';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { MyTestNavComponent } from './my-test-nav/my-test-nav.component';
@@ -55,6 +56,15 @@ import { AddSchoolComponent } from './practice/components/school/add-school/add-
 import { SchoolDetailComponent } from './practice/components/school/school-detail/school-detail.component';
 import { StudentsClassesListComponent } from './practice/components/students-class/students-classes-list/students-classes-list.component';
 import { AddStudentClassComponent } from './practice/components/students-class/add-student-class/add-student-class.component';
+import { AddSubjectComponent } from './practice/components/subject/add-subject/add-subject.component';
+import { SubjectsListInClassComponent } from './practice/components/subject/subjects-list-in-class/subjects-list-in-class.component';
+import { AddChapterComponent } from './practice/components/chapter/add-chapter/add-chapter.component';
+import { AddSectionComponent } from './practice/components/sections/add-section/add-section.component';
+import { SectionsListForTestsComponent } from './practice/components/sections/sections-list-for-tests/sections-list-for-tests.component';
+import { AddQuestionComponent } from './practice/components/questions/add-question/add-question.component';
+import { TakeQuizComponent } from './practice/components/quizs/take-quiz/take-quiz.component';
+import { ViewResultComponent } from './practice/components/quizs/view-result/view-result.component';
+import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz-test.component';
 
 @NgModule({
   declarations: [
@@ -99,11 +109,21 @@ import { AddStudentClassComponent } from './practice/components/students-class/a
     AddSchoolComponent,
     SchoolDetailComponent,
     StudentsClassesListComponent,
-    AddStudentClassComponent
+    AddStudentClassComponent,
+    AddSubjectComponent,
+    SubjectsListInClassComponent,
+    AddChapterComponent,
+    AddSectionComponent,
+    SectionsListForTestsComponent,
+    AddQuestionComponent,
+    TakeQuizComponent,
+    ViewResultComponent,
+    QuizTestComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
     HeroesModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     BrowserModule,
@@ -119,7 +139,7 @@ import { AddStudentClassComponent } from './practice/components/students-class/a
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule ,
-    MatSelectModule,
+    MatSelectModule, MatRadioModule,
     MatDialogModule, MatDividerModule,    MatExpansionModule, MatTabsModule, MatButtonToggleModule, MatStepperModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatNativeDateModule,
     MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule
   ],

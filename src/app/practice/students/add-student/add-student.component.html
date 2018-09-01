@@ -1,95 +1,124 @@
-<!-- <div class="main-student-button-div">
-  <h4>Create New Student</h4>
-  <button mat-stroked-button color="accent" routerLink="/students-list">Back to Classes</button>
-</div>
-<table class="classes-table"></table>
-<hr> -->
+<mat-card class="add-student-form-card">
 
-<!-- Add student feilds 000 -->
+  <mat-form-field>
+    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
+      <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
+        {{school.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="studentClass" name="selectedStudentsClassName" placeholder="Select Class" required>
+      <mat-option *ngFor="let studentsClass of studentsClassesList" [value]="studentsClass.$key">
+        {{studentsClass.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" [formControl]="rollNumber" placeholder="Roll Number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" [formControl]="name" placeholder="Name">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" [formControl]="fatherName" placeholder="Father Name">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" [formControl]="address" placeholder="Address">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" [formControl]="phone" placeholder="Phone">
+  </mat-form-field>
+
+  <button type="submit" mat-stroked-button color="accent" class="half-width" (click)="insertStudent()">Add Student</button>
+
+</mat-card>
+
+<!-- 
+
+<mat-card class="add-student-form-card">
+  <h4>Add Student</h4>
+  <form #studentForm1="ngForm" (onSubmit)="insertStudent(studentForm1)" class="example-form">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentClassService.selectedStudentClass.$key">
+
+    <mat-form-field class="example-full-width">
+      <input matInput name="name" #name placeholder="Name of Class" type="text" required aria-label="State">
+    </mat-form-field>
+
+    <button mat-raised-button name="addStudent" (click)="insertStudent(studentForm1)" type="submit">Add Student</button>
+
+  </form>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <mat-card class="add-student-form-card">
   <h4>Create New Student</h4>
 
-  <form class="example-form">
-    <mat-chip-list>
-      <mat-chip>Class : Nursery</mat-chip>
-      <mat-chip>Roll No : 1</mat-chip>
-    </mat-chip-list>
-    <hr>
+  <form #studentForm="ngForm" (onSubmit)="insertStudent(studentForm)" class="example-form">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentService.selectedStudent.$key">
+
+    <mat-form-field>
+      <mat-select name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
+        <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
+          {{school.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select name="selectedStudentsClassName" placeholder="Select Class" required>
+        <mat-option *ngFor="let studentsClass of studentsClassesList" [value]="studentsClass.$key">
+          {{studentsClass.$key}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Name" type="text" required aria-label="State">
+      <input matInput name="name" placeholder="Name" type="text" required aria-label="State">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput type="text" placeholder="Father Name" required>
+      <input name="fatherName" matInput type="text" placeholder="Father Name" required>
     </mat-form-field>
     <mat-form-field class="add-student-form-card">
-      <input matInput type="text" placeholder="Address" required>
+      <input matInput name="address" type="text" placeholder="Address" required>
     </mat-form-field>
     <mat-form-field class="half-width">
-      <input matInput type="number" placeholder="Phone">
+      <input matInput type="number" name="phone" placeholder="Phone">
     </mat-form-field>
     <mat-form-field class="half-width">
-      <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+      <input matInput [matDatepicker]="picker" name="DOB" placeholder="Date of Birth">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <br>
-    <button mat-stroked-button color="accent" class="half-width" (click)="openDialog()" >
+    <button mat-stroked-button name="addStudent" type="submit" color="accent" class="half-width" (click)="insertStudent(studentForm)">
       Add New Student
     </button>
     <button mat-stroked-button color="accent" routerLink="/students-list" class="half-width">Back to Classes</button>
   </form>
-</mat-card>
-<!-- 000 -->
-
-<!-- <hr> -->
-<!-- This is Add-Student -->
-<!-- <div class="example-container">
-  <mat-card>
-    This is true.
-
-    <mat-form-field>
-      <input matInput placeholder="Enter your email" [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </mat-card>
-</div> -->
-
-<!-- stepper code 111 -->
-
-<!-- <div class="classes-table">
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">Add New Student</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
-</div> -->
-
-<!-- 111 -->
+</mat-card> -->

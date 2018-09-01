@@ -6,6 +6,6 @@ export class StudentClass {
     name: string;
     session: string;
     // foreign keys
-    inchargeID: string;
-    clssRoomID: string;
+    incharge: string;
+    clssRoom: string;
 }

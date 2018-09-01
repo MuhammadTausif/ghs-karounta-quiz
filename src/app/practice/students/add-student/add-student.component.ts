@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, NgForm } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Inject } from '@angular/core';
+import { School } from '../../shared/models/school.model';
+import { SchoolService } from '../../shared/services/school.service';
+import { StudentService } from '../../shared/services/student.service';
+import { StudentClassService } from '../../shared/services/student-class.service';
+import { StudentClass } from '../../shared/models/studentClass.model';
+import { Student } from '../../shared/models/student.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-student',
@@ -11,73 +18,78 @@ import { Inject } from '@angular/core';
 })
 export class AddStudentComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  // selectedSchoolEMIS: string;
+  schoolsList: School[];
+  studentsClassesList: StudentClass[];
 
-  animal: string;
-  name: string;
-
-  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog) { }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-  }
-
-  stateCtrl = new FormControl();
-  
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
-  states: string[] = [
-    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
-    'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-    'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-    'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-    'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-    'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-  ];
-
-}
-
-export interface Food {
-  value: string;
-  viewValue: string;
-}
-
-export class DialogOverviewExampleDialog {
+  name = new FormControl('');
+  fatherName = new FormControl('');
+  address = new FormControl('');
+  phone= new FormControl('');
+  studentClass = new FormControl('');
+  rollNumber = new FormControl('');
+  selectedSchoolEMIS = new FormControl('');
+  selectedStudentClassName = new FormControl('');
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    public schoolService: SchoolService,
+    public studentService: StudentService,
+    public studentsClassService: StudentClassService,
+    public router: Router,
+  ) { }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  ngOnInit() {
+    this.getSchoolsList();
+    this.getStudentsClassesList();
   }
-}
 
-export interface DialogData {
-  animal: string;
-  name: string;
+  // Getting schools list
+  getSchoolsList() {
+    var x = this.schoolService.getData();
+    x.snapshotChanges().subscribe(
+      item => {
+        this.schoolsList = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.schoolsList.push(y as School);
+        });
+      });
+  }
+
+  // Getting students classes list
+  getStudentsClassesList(selectedSchoolEMIS?: string) {
+    var x = this.studentsClassService.getStudentsClassesList(selectedSchoolEMIS);
+    x.snapshotChanges().subscribe(
+      item => {
+        this.studentsClassesList = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.studentsClassesList.push(y as StudentClass);
+        });
+      });
+  }
+
+  insertStudent(studentForm?: NgForm) {
+    var student: Student = new Student();
+
+    student.studentClassKey= this.studentClass.value;
+    student.name = this.name.value;
+    student.fatherName = this.fatherName.value;
+    student.phone = this.phone.value;
+    student.address = this.address.value;
+    student.rollNumber = this.rollNumber.value;
+
+    this.studentService.insertStudent(student, this.selectedSchoolEMIS.value);
+  }
+
+  onSubmit() {  }
+
+  insertStudentReactiveForm(){
+    console.warn(this.name.value);
+    console.warn(this.fatherName.value);
+    console.warn(this.selectedSchoolEMIS.value);
+    console.warn(this.selectedStudentClassName.value);
+  }
 }

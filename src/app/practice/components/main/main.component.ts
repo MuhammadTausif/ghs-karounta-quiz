@@ -22,15 +22,55 @@ export class MainComponent implements OnInit {
                 categoryName: 'Classes', icon: 'group', dropDown: false,
                 subCategory:
                     [
-                        { subCategoryName: 'Add Class', listIcon: 'add', subCategoryLink: '/add-class', subCategoryQuery: { title: 'Add New Student' }, visable: true, },
+                        { subCategoryName: 'Add Class', listIcon: 'add', subCategoryLink: '/add-class', visable: true, },
                         { subCategoryName: 'List of Classes', listIcon: 'list', subCategoryLink: '/classes-list-for-students', visable: true, },
+                    ]
+            },
+            {
+                categoryName: 'Subjects', icon: 'book', dropDown: false,
+                subCategory:
+                    [
+                        { subCategoryName: 'Add Subject', listIcon: 'add', subCategoryLink: '/add-subject', visable: true, },
+                        { subCategoryName: 'List of Subjects', listIcon: 'list', subCategoryLink: '/subjects-list-in-classes', visable: true, },
+                    ]
+            },
+            {
+                categoryName: 'Chapters', icon: 'book', dropDown: false,
+                subCategory:
+                    [
+                        { subCategoryName: 'Add Chapter', listIcon: 'add', subCategoryLink: '/add-chapter', visable: true, },
+                        { subCategoryName: 'List of Chapters', listIcon: 'list', subCategoryLink: '/chapters-list-of-subects', visable: true, },
+                    ]
+            },
+            {
+                categoryName: 'Sections', icon: 'book', dropDown: false,
+                subCategory:
+                    [
+                        { subCategoryName: 'Add Section', listIcon: 'add', subCategoryLink: '/add-section', visable: true, },
+                        { subCategoryName: 'List of Sactions', listIcon: 'list', subCategoryLink: '/sectioins-list-of-chapters', visable: true, },
+                    ]
+            },
+            {
+                categoryName: 'Questions', icon: 'help', dropDown: false,
+                subCategory:
+                    [
+                        { subCategoryName: 'Add Question', listIcon: 'add', subCategoryLink: '/add-question', visable: true, },
+                        { subCategoryName: 'List of Questions', listIcon: 'list', subCategoryLink: '/add-question', visable: true, },
+                    ]
+            },
+            {
+                categoryName: 'Quiz', icon: 'exam', dropDown: false,
+                subCategory:
+                    [
+                        { subCategoryName: 'Take Quiz', listIcon: 'add', subCategoryLink: '/take-quiz', visable: true, },
+                        { subCategoryName: 'View Result', listIcon: 'list', subCategoryLink: '/view-result', visable: true, },
                     ]
             },
             {
                 categoryName: 'Students', icon: 'face', dropDown: false,
                 subCategory:
                     [
-                        { subCategoryName: 'Add Student', listIcon: 'add', subCategoryLink: '/add-student', subCategoryQuery: { title: 'Add New Student' }, visable: true, },
+                        { subCategoryName: 'Add Student', listIcon: 'add', subCategoryLink: '/add-student', visable: true, },
                         { subCategoryName: 'Classes', listIcon: 'list', subCategoryLink: '/students-list', visable: true, },
                     ]
             },
@@ -65,6 +105,7 @@ export class MainComponent implements OnInit {
                     [
                         { subCategoryName: 'Firebase', listIcon: 'firebase', subCategoryLink: '/firebase-in-action', visable: true, },
                         { subCategoryName: 'Dialog', listIcon: 'folder', subCategoryLink: '/dialog-in-action', visable: true, },
+                        { subCategoryName: 'ng2-quiz', listIcon: 'folder', subCategoryLink: '/ng2-quiz-master', visable: true, },
                     ]
             },
         ];

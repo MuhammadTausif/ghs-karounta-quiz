@@ -8,6 +8,8 @@ import { Student } from '../models/student.model';
 export class StudentService {
   studentsList: AngularFireList<any>;
   selectedStudent: Student = new Student();
+  selectedClassName: string;
+  selectedSchoolEMIS: string;
 
   constructor(private firebase: AngularFireDatabase) { }
 
@@ -16,12 +18,16 @@ export class StudentService {
     return this.studentsList;
   }
 
-  insertStudent(student: Student) {
-    this.studentsList.push({
+  getStudentsList(selectedSchoolEMIS: string, studentClassName: string ){
+    return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/Students`);
+    // return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/subjects`);
+  }
+
+
+  insertStudent(student: Student, selectedSchoolEMIS: string) {
+    this.firebase.database.ref(`schools/${selectedSchoolEMIS}/studentClasses/${student.studentClassKey}/Students/${student.rollNumber}`).set({
       name: student.name,
       fatherName: student.fatherName,
-      studentClass: student.studentClassKey,
-      rollNumber: student.rollNumber,
       phone: student.phone,
       address: student.address
     });

@@ -20,7 +20,11 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/aspnet.json",
+              "src/assets/csharp.json",
+              "src/assets/designPatterns.json",
+              "src/assets/data"
             ],
             "styles": [
               "src/styles.css"
@@ -76,6 +80,16 @@
             ],
             "scripts": [],
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "/src",
+                "output": "/"
+              },
               "src/favicon.ico",
               "src/assets"
             ]

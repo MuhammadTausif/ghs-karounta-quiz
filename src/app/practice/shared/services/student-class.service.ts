@@ -24,19 +24,15 @@ export class StudentClassService {
     return this.studentsClassesList;
   }
 
-  insertStudentClass(studentClass: StudentClass) {
+  insertStudentClass(studentClass: StudentClass, selectedSchoolEMIS: string) {
+    this.firebase.database.ref(`schools/${selectedSchoolEMIS}/studentClasses/${studentClass.name}`).set({
+      incharge: studentClass.incharge,
+      session: studentClass.session
+    });
+  }
 
-    this.firebase.database.ref().child(`schools/-LJE4oEmVj4tgP5aaDyG/studentClasses/class2`).set('second value');
-
-    // this.firebase.database.ref().child(`schools/-LJE4oEmVj4tgP5aaDyG/studentClasses`).set(studentClass);
-
-    // this.studentsClassesList.push({
-    //   // $key: studentClass.$key,
-    //   name: studentClass.name,
-    //   // incharge: studentClass.inchargeID,
-    //   // clssRoom: studentClass.clssRoomID,
-    //   session: studentClass.session
-    // });
+  getStudentsClassesList(selectedSchoolEMIS: string): AngularFireList<any> {
+    return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses`);
   }
 
   updateStudentClass(studentClass: StudentClass) {
@@ -44,8 +40,8 @@ export class StudentClassService {
       studentClass.$key,
       {
         name: studentClass.name,
-        incharge: studentClass.inchargeID,
-        clssRoom: studentClass.clssRoomID,
+        incharge: studentClass.incharge,
+        clssRoom: studentClass.clssRoom,
         session: studentClass.session
       }
     );

@@ -1,32 +1,42 @@
-<mat-card class="add-new-record-form-card">
-    <h4>Create New Test</h4>
-  
-    <form class="example-form">
-      <mat-chip-list>
-        <mat-chip>Class : Nursery</mat-chip>
-        <mat-chip>Roll No : 1</mat-chip>
-      </mat-chip-list>
-      <hr>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Name" type="text" required aria-label="State">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput type="text" placeholder="Father Name" required>
-      </mat-form-field>
-      <mat-form-field class="add-student-form-card">
-        <input matInput type="text" placeholder="Address" required>
-      </mat-form-field>
-      <mat-form-field class="half-width">
-        <input matInput type="number" placeholder="Phone">
-      </mat-form-field>
-      <mat-form-field class="half-width">
-        <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <br>
-      <button mat-stroked-button color="accent" class="half-width">Add New Student</button>
-      <button mat-stroked-button color="accent" routerLink="/students-list" class="half-width">Back to Classes</button>
-    </form>
-  </mat-card>
-  
+<p>Add test under dev</p>
+<!-- <mat-card class="add-form-card">
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
+      <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
+        {{school.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedClassName" name="selectedClassName" placeholder="Select Class"  (selectionChange)="getSubjectsList(selectedSchoolEMIS.value, $event.value)">
+      <mat-option *ngFor="let studentsClass of studentsClassesList" [value]="studentsClass.$key">
+        {{studentsClass.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Subject" required>
+      <mat-option *ngFor="let studentsSubject of subjectsList" [value]="studentsSubject.$key">
+        {{studentsSubject.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Chapter" required>
+      <mat-option *ngFor="let studentsSubject of subjectsList" [value]="studentsSubject.$key">
+        {{studentsSubject.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="name" placeholder="Name">
+  </mat-form-field>
+
+  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="insertChapter()">Add Student</button>
+
+</mat-card> -->

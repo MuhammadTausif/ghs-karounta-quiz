@@ -1,35 +1,33 @@
-<!-- It loads
-
-<button mat-raised-button (click)="addStudentClass()" >Add Students Class</button> -->
-<select id="power" required>
-  <option *ngFor="let school of schoolsList" [value]="school.$key">{{school.name}}</option>
-</select>
-
 <mat-card class="add-student-form-card">
-  <h4> {{submitAction}} School</h4>
-  <form #studentsClassForm="ngForm" (onSubmit)="onSubmit(studentsClassForm)" class="example-form">
+  <h4> Add Student Class</h4>
+  <form #studentClassForm="ngForm" (onSubmit)="insertStudentClass(studentClassForm)" class="example-form">
+    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentClassService.selectedStudentClass.$key">
 
     <mat-form-field>
-      <mat-select placeholder="Select a School">
+      <mat-select name="selectedSchoolEMIS" [(value)]="selectedSchoolEMIS" placeholder="Select a School">
         <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
           {{school.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentClassService.selectedStudentsClass.$key">
     <mat-form-field class="example-full-width">
-      <input matInput name="name" #name="ngModel" [(ngModel)]="schoolService.selectedSchool.name" placeholder="Name of Class"
+      <input matInput name="name" #name="ngModel" [(ngModel)]="studentClassService.selectedStudentClass.name" placeholder="Name of Class"
         type="text" required aria-label="State">
     </mat-form-field>
-
     <mat-form-field class="example-full-width">
-        <input matInput name="session" #session="ngModel" [(ngModel)]="schoolService.selectedSchool.name" placeholder="Session"
-          type="text" required aria-label="State">
-      </mat-form-field>
-  
+      <input matInput name="session" #session="ngModel" [(ngModel)]="studentClassService.selectedStudentClass.EMIS" type="text"
+        placeholder="Session" required>
+    </mat-form-field>
+    <mat-form-field class="add-student-form-card">
+      <input matInput name="incharge" #incharge="ngModel" [(ngModel)]="studentClassService.selectedStudentClass.incharge" placeholder="incharge"
+        required>
+    </mat-form-field>
+
     <br>
-    <button mat-stroked-button color="accent" class="half-width" type="submit" (click)="onSubmit(studentsClassForm)" [disabled]="!studentsClassForm.valid">{{submitAction}} School</button>
+    <button mat-stroked-button color="accent" class="half-width" type="submit" (click)="insertStudentClass(studentClassForm)" [disabled]="!studentClassForm.valid">{{submitAction}}
+      School
+    </button>
     <button mat-stroked-button color="accent" routerLink="/schools-list" class="half-width">Back to Schools</button>
   </form>
 </mat-card>

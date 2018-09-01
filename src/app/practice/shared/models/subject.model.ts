@@ -1,9 +1,9 @@
 import { StudentClass } from "./studentClass.model";
 
 export class Subject {
-    id: number;
+    $key: string;
     name: string;
     
     // Foreign Keys
-    studentClass: StudentClass;
+    studentClassKey: string;
 }

@@ -1,5 +1,5 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ClassesComponent } from './practice/students/classes/classes.component';
 import { StudentsListComponent } from './practice/students/students-list/students-list.component';
 import { AddStudentComponent } from './practice/students/add-student/add-student.component';
@@ -20,55 +20,79 @@ import { SchoolsListComponent } from './practice/components/school/schools-list/
 import { SchoolDetailComponent } from './practice/components/school/school-detail/school-detail.component';
 import { StudentsClassesListComponent } from './practice/components/students-class/students-classes-list/students-classes-list.component';
 import { AddStudentClassComponent } from './practice/components/students-class/add-student-class/add-student-class.component';
+import { SubjectsListInClassComponent } from './practice/components/subject/subjects-list-in-class/subjects-list-in-class.component';
+import { AddSubjectComponent } from './practice/components/subject/add-subject/add-subject.component';
+import { AddChapterComponent } from './practice/components/chapter/add-chapter/add-chapter.component';
+import { ChaptersListForTestsComponent } from './practice/tests/chapters-list-for-tests/chapters-list-for-tests.component';
+import { AddSectionComponent } from './practice/components/sections/add-section/add-section.component';
+import { SectionsListForTestsComponent } from './practice/components/sections/sections-list-for-tests/sections-list-for-tests.component';
+import { AddQuestionComponent } from './practice/components/questions/add-question/add-question.component';
+import { TakeQuizComponent } from './practice/components/quizs/take-quiz/take-quiz.component';
+import { ViewResultComponent } from './practice/components/quizs/view-result/view-result.component';
+import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz-test.component';
 
 const appRoutes: Routes = [
 
-    // List routes
-    { path: 'classes', component: ClassesComponent },
-    { path: 'student-list', component: StudentsListComponent },
-    { path: 'teacher-list', component: ListTeachersComponent },
-    { path: 'classes-list-for-students', component: StudentsClassesListComponent },
-    { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
-    { path: 'subjects-list-for-tests', component: SubjectsListForTestsComponent },
-    { path: 'tests-list-for-tests', component: ListTestsComponent },
-    { path: 'schools-list', component: SchoolsListComponent },
-    
-    // Add element routes
-    { path: 'add-student', component: AddStudentComponent },
-    { path: 'add-teacher', component: AddTeacherComponent },
-    { path: 'add-test', component: AddTestComponent },
-    { path: 'add-school', component: AddSchoolComponent },
-    { path: 'add-class', component: AddStudentClassComponent },
+  // List routes
+  { path: 'classes', component: ClassesComponent },
+  { path: 'student-list', component: StudentsListComponent },
+  { path: 'teacher-list', component: ListTeachersComponent },
+  { path: 'classes-list-for-students', component: StudentsClassesListComponent },
+  { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
+  { path: 'subjects-list-for-tests', component: SubjectsListForTestsComponent },
+  { path: 'tests-list-for-tests', component: ListTestsComponent },
+  { path: 'schools-list', component: SchoolsListComponent },
+  { path: 'subjects-list-in-classes', component: SubjectsListInClassComponent },
+  { path: 'chapters-list-of-subects', component: ChaptersListForTestsComponent },
+  { path: 'sectioins-list-of-chapters', component: SectionsListForTestsComponent },
 
-    // detail element routes
-    { path: 'school-detail', component: SchoolDetailComponent},
+  // Add element routes
+  { path: 'add-student', component: AddStudentComponent },
+  { path: 'add-teacher', component: AddTeacherComponent },
+  { path: 'add-test', component: AddTestComponent },
+  { path: 'add-school', component: AddSchoolComponent },
+  { path: 'add-class', component: AddStudentClassComponent },
+  { path: 'add-subject', component: AddSubjectComponent },
+  { path: 'add-chapter', component: AddChapterComponent },
+  { path: 'add-section', component: AddSectionComponent },
+  { path: 'add-question', component: AddQuestionComponent },
 
-    // Practice routes
-    { path: 'firebase-in-action', component: Angular6FireBase2SetupComponent },
-    {path: 'add-item', component: ItemFormComponent},
-    {path: 'view-item', component: ItemsListComponent},
-    {path: 'employees', component: RootContainerComponent},
-    
-    { path: 'routing', component: HeroListComponent, outlet: 'second-outlet' },
-    
-    { path: 'foo', component: HeroListComponent, outlet: 'secondry' },
-    
-    // Dialog box rout
-    { path: 'dialog-in-action', component: DialogBoxComponent},
-   
-    { path: '',   redirectTo: '/classes', pathMatch: 'full' },
-    { path: '**', component: ClassesComponent }
+  // detail element routes
+  { path: 'school-detail', component: SchoolDetailComponent },
+
+  // Quiz and result
+  { path: 'take-quiz', component: TakeQuizComponent },
+  { path: 'view-result', component: ViewResultComponent },
+
+  // Practice routes
+  { path: 'firebase-in-action', component: Angular6FireBase2SetupComponent },
+  { path: 'add-item', component: ItemFormComponent },
+  { path: 'view-item', component: ItemsListComponent },
+  { path: 'employees', component: RootContainerComponent },
+  { path: 'ng2-quiz-master', component: QuizTestComponent },
+
+
+  { path: 'routing', component: HeroListComponent, outlet: 'second-outlet' },
+
+  { path: 'foo', component: HeroListComponent, outlet: 'secondry' },
+
+  // Dialog box rout
+  { path: 'dialog-in-action', component: DialogBoxComponent },
+
+  // default paths
+  { path: '', redirectTo: '/classes', pathMatch: 'full' },
+  { path: '**', component: ClassesComponent }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       appRoutes,
-    //   { enableTracing: true } // <-- debugging purposes only
+      //   { enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

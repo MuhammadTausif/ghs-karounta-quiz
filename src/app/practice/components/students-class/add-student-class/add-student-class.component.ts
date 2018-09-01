@@ -3,6 +3,8 @@ import { SchoolService } from '../../../shared/services/school.service';
 import { StudentClassService } from '../../../shared/services/student-class.service';
 import { School } from '../../../shared/models/school.model';
 import { StudentClass } from '../../../shared/models/studentClass.model';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-student-class',
@@ -12,9 +14,14 @@ import { StudentClass } from '../../../shared/models/studentClass.model';
 export class AddStudentClassComponent implements OnInit {
 
   schoolsList: School[];
+  selectedSchoolEMIS: string;
   studentsClassesList: StudentClass[];
 
-  constructor(public schoolService: SchoolService, public studentClassService: StudentClassService) { }
+  constructor(
+    public schoolService: SchoolService,
+    public studentClassService: StudentClassService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     // Getting school list
@@ -29,29 +36,9 @@ export class AddStudentClassComponent implements OnInit {
         });
       });
 
-    // Getting classes list
-    var z = this.studentClassService.getData();
-    z.snapshotChanges().subscribe(
-      item => {
-        this.studentsClassesList = [];
-        item.forEach(element => {
-          var w = element.payload.toJSON();
-          w["$key"] = element.key;
-          this.studentsClassesList.push(w as StudentClass)
-        })
-      }
-    );
-
-    // this.addStudentClass();
   }
 
-  addStudentClass(){
-   var tempStudentClass: StudentClass = new StudentClass();
-
-   tempStudentClass.$key="Class5";
-   tempStudentClass.name="Class 3";
-   tempStudentClass.session="2018";
-
-    this.studentClassService.insertStudentClass(tempStudentClass);
+  insertStudentClass(studentsClassForm: NgForm) {
+    this.studentClassService.insertStudentClass(studentsClassForm.value, this.selectedSchoolEMIS);
   }
 }

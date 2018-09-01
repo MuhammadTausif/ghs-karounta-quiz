@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* Classes for header of lists 000 */
 
@@ -29,31 +30,7 @@
 
 /* 111 */
 
-/* To set the width 100% 222 */
-.full-width{
-    widows: 100%;
-}
-/* 222 */
-
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "theme";
-
-
-/* This is for SCSS
-// Material 2 theme
-// Active icon color in list nav
- mat-list {
-  [mat-list-item].active {
-    background-color: mat-color($accent);
-    color: mat-color($accent, default-contrast)
-    mat-icon {
-
-    }
-    mat-icon[mat-list-icon] {
-      color: mat-color($accent);
-    }
-  }
-} */
 
 
 /* This is to fill the space between title and notification icon *333* */
@@ -62,3 +39,40 @@
 }
 /* 333 */
 
+/* Global Styles 444 */
+
+/* Full width section */
+.full-width{
+    width: 100%;
+}
+
+/* Half width section with 40% width and 0.5% margin */
+.half-width-49pr-05mrg{
+    width: 49%;
+    margin: 0.5%;
+}
+
+/*
+ Card for add section with 
+    width 500px,
+    center aligned,
+    left and right margin auto
+ */
+ .add-form-card{
+    width: 500px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Left floating class */
+  .float-left{
+      float: left;
+  }
+
+  /* Right floating class */
+  .float-right{
+      float: right;
+  }
+
+/* 444 */

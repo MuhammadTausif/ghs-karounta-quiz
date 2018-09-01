@@ -1,0 +1,67 @@
+<mat-card class="add-form-card">
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
+      <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
+        {{school.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedClassName" name="selectedClassName" placeholder="Select Class"  (selectionChange)="getSubjectsList(selectedSchoolEMIS.value, $event.value)">
+      <mat-option *ngFor="let studentsClass of studentsClassesList" [value]="studentsClass.$key">
+        {{studentsClass.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Subject" (selectionChange)="getChaptersList(selectedSchoolEMIS.value, selectedClassName.value, $event.value)" required>
+      <mat-option *ngFor="let studentsSubject of subjectsList" [value]="studentsSubject.$key">
+        {{studentsSubject.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedChapterName" name="selectedChapterName" placeholder="Select Chapter"  (selectionChange)="getSactionsList(selectedSchoolEMIS.value, selectedClassName.value, selectedSubjectName.value, $event.value)" required>
+      <mat-option *ngFor="let chapter of chaptersList" [value]="chapter.$key">
+        {{chapter.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [formControl]="selectedSectionName" name="selectedSectionName" placeholder="Select Section" required>
+      <mat-option *ngFor="let section of sectionsList" [value]="section.$key">
+        {{section.$key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="number" [formControl]="serialNumber" name="serialNumber" placeholder="Question Number">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="questionName" name="questionName" placeholder="Question: ">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="optionA" name="optionA" placeholder="Option A: ">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="optionB" name="optionB" placeholder="Option B: ">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="optionC" name="optionC" placeholder="Option C: ">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" [formControl]="optionD" name="optionD" placeholder="Option D: ">
+  </mat-form-field>
+
+
+  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="insertQuestion()">Add Student</button>
+
+</mat-card>
