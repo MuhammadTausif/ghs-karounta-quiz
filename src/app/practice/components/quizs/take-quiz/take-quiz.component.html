@@ -1,4 +1,4 @@
-<mat-card class="add-form-card">
+<mat-card class="full-width">
 
   <mat-form-field>
     <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
@@ -50,7 +50,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
+ Total Question: {{totalQuestions}}
   <div *ngFor="let question of questions">
     <mat-card> <strong>{{question.$key}} : {{question.questionName}} </strong> </mat-card>
     <mat-radio-group>

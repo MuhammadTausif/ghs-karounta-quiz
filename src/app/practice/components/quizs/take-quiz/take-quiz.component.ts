@@ -30,10 +30,19 @@ export class TakeQuizComponent implements OnInit {
   subjectsList: StudentSubject[];
   chaptersList: Chapter[];
   sectionsList: Section[];
-  // questions: Question[];
+  questions: Question[] = [];
   question: Question;
 
-  questions: Question[] = [
+  totalQuestions = this.questions.length;
+
+  pager = {
+    index: 0,
+    size: 1,
+    count: 1
+  };
+
+  // Demo question list must be deleted.
+  questionsDemo: Question[] = [
     {
       $key: '1', questionName: "First Question", optionA: "A", optionB: "B", optionC: "C", optionD: "D",
       schoolEMIS: '37230015',
@@ -137,7 +146,7 @@ export class TakeQuizComponent implements OnInit {
           this.subjectsList.push(y as StudentSubject);
         });
       });
-      // this.getStudentsList(selectedSchoolEMIS, studentClassName);
+    // this.getStudentsList(selectedSchoolEMIS, studentClassName);
   }
 
   // Getting subjects list
@@ -192,6 +201,7 @@ export class TakeQuizComponent implements OnInit {
           var y = element.payload.toJSON();
           y["$key"] = element.key;
           this.questions.push(y as Question);
+          this.totalQuestions=this.questions.length;
         });
       });
   }
