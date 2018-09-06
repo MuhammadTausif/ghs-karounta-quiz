@@ -1,8 +1,9 @@
 <mat-card class="full-width">
 
+  <input type="text" autofocus style="width:0px" />
   <mat-form-field>
     <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
-      <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
+      <mat-option *ngFor="let school of schoolsList" [value]="school.$key" autofocus>
         {{school.name}}
       </mat-option>
     </mat-select>
@@ -50,25 +51,43 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
- Total Question: {{totalQuestions}}
-  <div *ngFor="let question of questions">
-    <mat-card> <strong>{{question.$key}} : {{question.questionName}} </strong> </mat-card>
-    <mat-radio-group>
+  Question No: {{pager.index}} of {{totalQuestions}}
+  <div *ngIf="selectedQuestion">
+    <mat-card> <strong>{{selectedQuestion.$key}} : {{selectedQuestion.questionName}} </strong> </mat-card>
+    <mat-radio-group  [(formControl)]="selectedOption">
       <mat-card>
-        <mat-radio-button value="1">{{question.optionA}} </mat-radio-button>
+        <mat-radio-button value="A">{{selectedQuestion.optionA}} </mat-radio-button>
       </mat-card>
       <mat-card>
-        <mat-radio-button value="2">{{question.optionB}} </mat-radio-button>
+        <mat-radio-button value="B">{{selectedQuestion.optionB}} </mat-radio-button>
       </mat-card>
       <mat-card>
-        <mat-radio-button value="1">{{question.optionC}} </mat-radio-button>
+        <mat-radio-button value="C">{{selectedQuestion.optionC}} </mat-radio-button>
       </mat-card>
       <mat-card>
-        <mat-radio-button value="2">{{question.optionD}} </mat-radio-button>
+        <mat-radio-button value="D">{{selectedQuestion.optionD}} </mat-radio-button>
       </mat-card>
     </mat-radio-group>
   </div>
 
-  <!-- <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="insertQuestion()">Add Student</button> -->
+  <!-- <div *ngFor="let question of questions">
+    <mat-card> <strong>{{question.$key}} : {{question.questionName}} </strong> </mat-card>
+    <mat-radio-group>
+      <mat-card>
+        <mat-radio-button (change)="radioChange()" value="1">{{question.optionA}} </mat-radio-button>
+      </mat-card>
+      <mat-card>
+        <mat-radio-button (change)="radioChange()" value="2">{{question.optionB}} </mat-radio-button>
+      </mat-card>
+      <mat-card>
+        <mat-radio-button (change)="radioChange()" value="1">{{question.optionC}} </mat-radio-button>
+      </mat-card>
+      <mat-card>
+        <mat-radio-button (change)="radioChange()" value="2">{{question.optionD}} </mat-radio-button>
+      </mat-card>
+    </mat-radio-group>
+  </div> -->
+
+  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="submitAnswer()">Add Student</button>
 
 </mat-card>

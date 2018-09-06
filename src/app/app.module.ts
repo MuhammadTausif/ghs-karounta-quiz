@@ -65,6 +65,10 @@ import { AddQuestionComponent } from './practice/components/questions/add-questi
 import { TakeQuizComponent } from './practice/components/quizs/take-quiz/take-quiz.component';
 import { ViewResultComponent } from './practice/components/quizs/view-result/view-result.component';
 import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz-test.component';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.component';
+import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
+import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +122,10 @@ import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz
     AddQuestionComponent,
     TakeQuizComponent,
     ViewResultComponent,
-    QuizTestComponent
+    QuizTestComponent,
+    MobileComponent,
+    AcComponent,
+    TvComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
@@ -141,7 +148,9 @@ import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz
     FlexLayoutModule ,
     MatSelectModule, MatRadioModule,
     MatDialogModule, MatDividerModule,    MatExpansionModule, MatTabsModule, MatButtonToggleModule, MatStepperModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatNativeDateModule,
-    MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule
+    MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule,
+    // Routing progress bar
+    SlimLoadingBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

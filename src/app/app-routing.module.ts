@@ -30,6 +30,9 @@ import { AddQuestionComponent } from './practice/components/questions/add-questi
 import { TakeQuizComponent } from './practice/components/quizs/take-quiz/take-quiz.component';
 import { ViewResultComponent } from './practice/components/quizs/view-result/view-result.component';
 import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz-test.component';
+import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.component';
+import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
+import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 
 const appRoutes: Routes = [
 
@@ -78,6 +81,11 @@ const appRoutes: Routes = [
 
   // Dialog box rout
   { path: 'dialog-in-action', component: DialogBoxComponent },
+
+  // routing-progress-bar routs
+  {    path: 'mobile',    component: MobileComponent  },
+  {    path: 'tv',    component: TvComponent  },
+  {    path: 'ac',    component: AcComponent  },
 
   // default paths
   { path: '', redirectTo: '/classes', pathMatch: 'full' },

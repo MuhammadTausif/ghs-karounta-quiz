@@ -90,6 +90,9 @@ export class TakeQuizComponent implements OnInit {
   currentOptionC = new FormControl('');
   currentOptionD = new FormControl('');
 
+  selectedQuestion : Question;
+  selectedOption= new FormControl('');
+
   constructor(
     public schoolService: SchoolService,
     public subjectService: SubjectService,
@@ -201,27 +204,45 @@ export class TakeQuizComponent implements OnInit {
           var y = element.payload.toJSON();
           y["$key"] = element.key;
           this.questions.push(y as Question);
-          this.totalQuestions=this.questions.length;
+          this.totalQuestions = this.questions.length;
         });
       });
+    var selectedQuestionIndex = Math.floor(Math.random()*this.questions.length);
+    this.selectedQuestion = this.questions[selectedQuestionIndex];
+    this.questions.splice(selectedQuestionIndex, 1);
   }
 
   submitAnswer() {
-    this.question = new Question;
-    this.question.$key = this.serialNumber.value;
-    this.question.questionName = this.questionName.value;
-    this.question.optionA = this.optionA.value;
-    this.question.optionB = this.optionB.value;
-    this.question.optionC = this.optionC.value;
-    this.question.optionD = this.optionD.value;
+    if (this.questions.length > 0) {
+      this.pager.index++;
+      var selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
+      this.selectedQuestion = this.questions[selectedQuestionIndex];
+      this.questions.splice(selectedQuestionIndex, 1);
+      var answeredQuestion: Question = new Question;
+      answeredQuestion.$key = this.selectedQuestion.$key;
+      answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
+      answeredQuestion.studentClassName = this.selectedClassName.value;
+      answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
+      answeredQuestion.chapterName=this.selectedChapterName.value;
+      answeredQuestion.sectionName = this.selectedSectionName.value;
 
-    this.question.schoolEMIS = this.selectedSchoolEMIS.value;
-    this.question.studentClassName = this.selectedClassName.value;
-    this.question.studentSubjectName = this.selectedSubjectName.value;
-    this.question.chapterName = this.selectedChapterName.value;
-    this.question.sectionName = this.selectedSectionName.value;
+      this.quizService.submitAnswer(this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value);
+    }
+    // this.question = new Question;
+    // this.question.$key = this.serialNumber.value;
+    // this.question.questionName = this.questionName.value;
+    // this.question.optionA = this.optionA.value;
+    // this.question.optionB = this.optionB.value;
+    // this.question.optionC = this.optionC.value;
+    // this.question.optionD = this.optionD.value;
 
-    this.questionService.insertQuestion(this.question);
+    // this.question.schoolEMIS = this.selectedSchoolEMIS.value;
+    // this.question.studentClassName = this.selectedClassName.value;
+    // this.question.studentSubjectName = this.selectedSubjectName.value;
+    // this.question.chapterName = this.selectedChapterName.value;
+    // this.question.sectionName = this.selectedSectionName.value;
+
+    // this.questionService.insertQuestion(this.question);
   }
 
   tempMethod() {
@@ -241,5 +262,9 @@ export class TakeQuizComponent implements OnInit {
     qn.sectionName = "Farz Namaz";
     console.log('called init');
     this.questionService.insertQuestion(qn);
+  }
+
+  radioChange() {
+    alert('clicked');
   }
 }

@@ -1,5 +1,14 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+// import { Router } from "@angular/router";
+import {
+    NavigationCancel,
+    Event,
+    NavigationEnd,
+    NavigationError,
+    NavigationStart,
+    Router
+} from '@angular/router';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 @Component({
     selector: 'app-main',
@@ -16,7 +25,13 @@ export class MainComponent implements OnInit {
     title = 'School Information System | GHS Karounta';
     navList: NavList[];
 
-    constructor(public ngZone: NgZone,        public route: Router, ) {
+    constructor(
+        private _loadingBar: SlimLoadingBarService, private _router: Router,
+        public ngZone: NgZone,
+        public route: Router, ) {
+        this._router.events.subscribe((event: Event) => {
+            this.navigationInterceptor(event);
+        });
         this.navList = [
             {
                 categoryName: 'Classes', icon: 'group', dropDown: false,
@@ -106,6 +121,10 @@ export class MainComponent implements OnInit {
                         { subCategoryName: 'Firebase', listIcon: 'firebase', subCategoryLink: '/firebase-in-action', visable: true, },
                         { subCategoryName: 'Dialog', listIcon: 'folder', subCategoryLink: '/dialog-in-action', visable: true, },
                         { subCategoryName: 'ng2-quiz', listIcon: 'folder', subCategoryLink: '/ng2-quiz-master', visable: true, },
+                        // routing-progress-bar
+                        { subCategoryName: 'Mobile', listIcon: 'folder', subCategoryLink: '/mobile', visable: true, },
+                        { subCategoryName: 'TV', listIcon: 'folder', subCategoryLink: '/tv', visable: true, },
+                        { subCategoryName: 'AC', listIcon: 'folder', subCategoryLink: '/ac', visable: true, },
                     ]
             },
         ];
@@ -115,6 +134,21 @@ export class MainComponent implements OnInit {
                 this.changeMode();
             });
         };
+    }
+
+    private navigationInterceptor(event: Event): void {
+        if (event instanceof NavigationStart) {
+            this._loadingBar.start();
+        }
+        if (event instanceof NavigationEnd) {
+            this._loadingBar.complete();
+        }
+        if (event instanceof NavigationCancel) {
+            this._loadingBar.stop();
+        }
+        if (event instanceof NavigationError) {
+            this._loadingBar.stop();
+        }
     }
 
     ngOnInit() {
