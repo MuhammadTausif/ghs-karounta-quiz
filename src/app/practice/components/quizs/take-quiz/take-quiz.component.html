@@ -52,6 +52,8 @@
     </mat-select>
   </mat-form-field>
   Question No: {{pager.index}} of {{totalQuestions}}
+  <h4>Time: {{startDateTime | date : 'HH:mm:ss'}} </h4>
+  <h4>Date: {{startDateTime | date : 'dd/MM/yyyy'}} </h4>
   <div *ngIf="selectedQuestion">
     <mat-card> <strong>{{selectedQuestion.$key}} : {{selectedQuestion.questionName}} </strong> </mat-card>
     <mat-radio-group  [(formControl)]="selectedOption">

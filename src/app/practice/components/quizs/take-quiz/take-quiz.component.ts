@@ -34,6 +34,7 @@ export class TakeQuizComponent implements OnInit {
   question: Question;
 
   totalQuestions = this.questions.length;
+  startDateTime: string;
 
   pager = {
     index: 0,
@@ -107,6 +108,7 @@ export class TakeQuizComponent implements OnInit {
 
   ngOnInit() {
     this.getSchoolsList();
+    this.startDateTime = Date.now().toString();
   }
 
   // Getting schools list
@@ -220,13 +222,14 @@ export class TakeQuizComponent implements OnInit {
       this.questions.splice(selectedQuestionIndex, 1);
       var answeredQuestion: Question = new Question;
       answeredQuestion.$key = this.selectedQuestion.$key;
+      answeredQuestion.questionName = this.selectedQuestion.questionName;
       answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
       answeredQuestion.studentClassName = this.selectedClassName.value;
       answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
       answeredQuestion.chapterName=this.selectedChapterName.value;
       answeredQuestion.sectionName = this.selectedSectionName.value;
 
-      this.quizService.submitAnswer(this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value);
+      this.quizService.submitAnswer(this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
     }
     // this.question = new Question;
     // this.question.$key = this.serialNumber.value;

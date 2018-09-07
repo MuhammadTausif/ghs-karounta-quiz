@@ -10,10 +10,10 @@ export class QuizService {
 
   constructor(private firebase: AngularFireDatabase) { }
 
-  submitAnswer( studentRollNo: string, question: Question, option: string ){
-    this.firebase.database.ref(`schools/${question.schoolEMIS}/studentClasses/${question.studentClassName}/Students/${studentRollNo}/Subjects/${question.studentSubjectName}/chapters/${question.chapterName}/sections/${question.sectionName}/answers/${question.$key}`).set({
+  submitAnswer( studentRollNo: string, question: Question, option: string, startDateTime: string ){
+    this.firebase.database.ref(`schools/${question.schoolEMIS}/studentClasses/${question.studentClassName}/Students/${studentRollNo}/Subjects/${question.studentSubjectName}/chapters/${question.chapterName}/sections/${question.sectionName}/answers/${startDateTime}/${question.$key}`).set({
       answeredOption: option,
-      // questionText: question.questionName
+      questionText: question.questionName
     }); 
   }
 }
