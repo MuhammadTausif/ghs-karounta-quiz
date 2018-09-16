@@ -17,10 +17,11 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 })
 export class MainComponent implements OnInit {
 
-    //Sidenav responsive
+    // Sidenav responsive
     width;
     height;
-    mode: string = 'side';
+    mode = 'side';
+    // mode: string = 'side';
     open = 'true';
     title = 'School Information System | GHS Karounta';
     navList: NavList[];
@@ -38,7 +39,8 @@ export class MainComponent implements OnInit {
                 subCategory:
                     [
                         { subCategoryName: 'Add Class', listIcon: 'add', subCategoryLink: '/add-class', visable: true, },
-                        { subCategoryName: 'List of Classes', listIcon: 'list', subCategoryLink: '/classes-list-for-students', visable: true, },
+                        { subCategoryName: 'List of Classes', listIcon: 'list',
+                         subCategoryLink: '/classes-list-for-students', visable: true, },
                     ]
             },
             {
@@ -46,7 +48,8 @@ export class MainComponent implements OnInit {
                 subCategory:
                     [
                         { subCategoryName: 'Add Subject', listIcon: 'add', subCategoryLink: '/add-subject', visable: true, },
-                        { subCategoryName: 'List of Subjects', listIcon: 'list', subCategoryLink: '/subjects-list-in-classes', visable: true, },
+                        { subCategoryName: 'List of Subjects', listIcon: 'list',
+                         subCategoryLink: '/subjects-list-in-classes', visable: true, },
                     ]
             },
             {
@@ -54,7 +57,8 @@ export class MainComponent implements OnInit {
                 subCategory:
                     [
                         { subCategoryName: 'Add Chapter', listIcon: 'add', subCategoryLink: '/add-chapter', visable: true, },
-                        { subCategoryName: 'List of Chapters', listIcon: 'list', subCategoryLink: '/chapters-list-of-subects', visable: true, },
+                        { subCategoryName: 'List of Chapters', listIcon: 'list',
+                         subCategoryLink: '/chapters-list-of-subects', visable: true, },
                     ]
             },
             {
@@ -62,7 +66,8 @@ export class MainComponent implements OnInit {
                 subCategory:
                     [
                         { subCategoryName: 'Add Section', listIcon: 'add', subCategoryLink: '/add-section', visable: true, },
-                        { subCategoryName: 'List of Sactions', listIcon: 'list', subCategoryLink: '/sectioins-list-of-chapters', visable: true, },
+                        { subCategoryName: 'List of Sactions', listIcon: 'list',
+                         subCategoryLink: '/sectioins-list-of-chapters', visable: true, },
                     ]
             },
             {
@@ -74,7 +79,7 @@ export class MainComponent implements OnInit {
                     ]
             },
             {
-                categoryName: 'Quiz', icon: 'exam', dropDown: false,
+                categoryName: 'Quiz', icon: 'question_answer', dropDown: false,
                 subCategory:
                     [
                         { subCategoryName: 'Take Quiz', listIcon: 'add', subCategoryLink: '/take-quiz', visable: true, },
@@ -98,16 +103,18 @@ export class MainComponent implements OnInit {
                     ]
             },
             {
-                categoryName: 'Tests', icon: 'folder open', dropDown: false, //work
+                categoryName: 'Tests', icon: 'folder open', dropDown: false,
                 subCategory:
                     [
                         { subCategoryName: 'Create Test', listIcon: 'add', subCategoryLink: '/add-test', visable: true, },
-                        { subCategoryName: 'Class wise Tests', listIcon: 'list', subCategoryLink: '/classes-list-for-tests', visable: true, },
-                        { subCategoryName: 'Subject wise Tests', listIcon: 'list', subCategoryLink: '/subjects-list-for-tests', visable: true, },
+                        { subCategoryName: 'Class wise Tests', listIcon: 'list',
+                         subCategoryLink: '/classes-list-for-tests', visable: true, },
+                        { subCategoryName: 'Subject wise Tests', listIcon: 'list',
+                        subCategoryLink: '/subjects-list-for-tests', visable: true, },
                     ]
             },
             {
-                categoryName: 'Schools', icon: 'school', dropDown: false, //work
+                categoryName: 'Schools', icon: 'school', dropDown: false,
                 subCategory:
                     [
                         { subCategoryName: 'Create School', listIcon: 'add', subCategoryLink: '/add-school', visable: true, },
@@ -115,7 +122,7 @@ export class MainComponent implements OnInit {
                     ]
             },
             {
-                categoryName: 'Practice', icon: 'close', dropDown: false, //work
+                categoryName: 'Practice', icon: 'close', dropDown: false,
                 subCategory:
                     [
                         { subCategoryName: 'Firebase', listIcon: 'firebase', subCategoryLink: '/firebase-in-action', visable: true, },

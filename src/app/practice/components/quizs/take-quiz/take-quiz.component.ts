@@ -45,7 +45,7 @@ export class TakeQuizComponent implements OnInit {
   // Demo question list must be deleted.
   questionsDemo: Question[] = [
     {
-      $key: '1', questionName: "First Question", optionA: "A", optionB: "B", optionC: "C", optionD: "D",
+      $key: '1', questionName: 'First Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
       schoolEMIS: '37230015',
       studentClassName: 'Class Test',
       studentSubjectName: 'Islamiat',
@@ -53,7 +53,7 @@ export class TakeQuizComponent implements OnInit {
       sectionName: 'Wajib Namaz'
     },
     {
-      $key: '2', questionName: "Second Question", optionA: "A", optionB: "B", optionC: "C", optionD: "D",
+      $key: '2', questionName: 'Second Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
       schoolEMIS: '37230015',
       studentClassName: 'Class Test',
       studentSubjectName: 'Islamiat',
@@ -61,7 +61,7 @@ export class TakeQuizComponent implements OnInit {
       sectionName: 'Wajib Namaz'
     },
     {
-      $key: '3', questionName: "Thired Question", optionA: "A", optionB: "B", optionC: "C", optionD: "D",
+      $key: '3', questionName: 'Thired Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
       schoolEMIS: '37230015',
       studentClassName: 'Class Test',
       studentSubjectName: 'Islamiat',
@@ -91,8 +91,8 @@ export class TakeQuizComponent implements OnInit {
   currentOptionC = new FormControl('');
   currentOptionD = new FormControl('');
 
-  selectedQuestion : Question;
-  selectedOption= new FormControl('');
+  selectedQuestion: Question;
+  selectedOption = new FormControl('');
 
   constructor(
     public schoolService: SchoolService,
@@ -113,13 +113,13 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting schools list
   getSchoolsList() {
-    var x = this.schoolService.getData();
+    const x = this.schoolService.getData();
     x.snapshotChanges().subscribe(
       item => {
         this.schoolsList = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.schoolsList.push(y as School);
         });
       });
@@ -127,13 +127,13 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting students classes list
   getStudentsClassesList(selectedSchoolEMIS?: string) {
-    var x = this.studentsClassService.getStudentsClassesList(selectedSchoolEMIS);
+    const x = this.studentsClassService.getStudentsClassesList(selectedSchoolEMIS);
     x.snapshotChanges().subscribe(
       item => {
         this.studentsClassesList = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.studentsClassesList.push(y as StudentClass);
         });
       });
@@ -141,13 +141,13 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting subjects list
   getSubjectsList(selectedSchoolEMIS?: string, studentClassName?: string) {
-    var x = this.subjectService.getSubjectsList(selectedSchoolEMIS, studentClassName);
+    const x = this.subjectService.getSubjectsList(selectedSchoolEMIS, studentClassName);
     x.snapshotChanges().subscribe(
       item => {
         this.subjectsList = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.subjectsList.push(y as StudentSubject);
         });
       });
@@ -156,13 +156,13 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting subjects list
   getStudentsList(selectedSchoolEMIS?: string, studentClassName?: string) {
-    var x = this.studenttService.getStudentsList(selectedSchoolEMIS, studentClassName);
+    const x = this.studenttService.getStudentsList(selectedSchoolEMIS, studentClassName);
     x.snapshotChanges().subscribe(
       item => {
         this.students = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.students.push(y as Student);
         });
       });
@@ -170,13 +170,13 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting chapters list
   getChaptersList(selectedSchoolEMIS?: string, studentClassName?: string, selectedSubjectName?: string) {
-    var x = this.chapterService.getChaptersList(selectedSchoolEMIS, studentClassName, selectedSubjectName);
+    const x = this.chapterService.getChaptersList(selectedSchoolEMIS, studentClassName, selectedSubjectName);
     x.snapshotChanges().subscribe(
       item => {
         this.chaptersList = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.chaptersList.push(y as Chapter);
         });
       });
@@ -184,32 +184,37 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting sections list
   getSactionsList(selectedSchoolEMIS?: string, studentClassName?: string, selectedSubjectName?: string, selectedChapterName?: string) {
-    var x = this.sectionService.getSectionsList(selectedSchoolEMIS, studentClassName, selectedSubjectName, selectedChapterName);
+    const x = this.sectionService.getSectionsList(selectedSchoolEMIS, studentClassName, selectedSubjectName, selectedChapterName);
     x.snapshotChanges().subscribe(
       item => {
         this.sectionsList = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.sectionsList.push(y as Section);
         });
       });
   }
 
   // Getting sections list
-  getQuestionsList(selectedSchoolEMIS?: string, studentClassName?: string, selectedSubjectName?: string, selectedChapterName?: string, selectedSectionName?: string) {
-    var x = this.questionService.getQuestionsList(selectedSchoolEMIS, studentClassName, selectedSubjectName, selectedChapterName, selectedSectionName);
+  getQuestionsList(
+    selectedSchoolEMIS?: string, studentClassName?: string, selectedSubjectName?: string,
+    selectedChapterName?: string, selectedSectionName?: string) {
+    const x = this.questionService.getQuestionsList(
+      selectedSchoolEMIS,
+      studentClassName,
+      selectedSubjectName, selectedChapterName, selectedSectionName);
     x.snapshotChanges().subscribe(
       item => {
         this.questions = [];
         item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
           this.questions.push(y as Question);
           this.totalQuestions = this.questions.length;
         });
       });
-    var selectedQuestionIndex = Math.floor(Math.random()*this.questions.length);
+    const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
     this.selectedQuestion = this.questions[selectedQuestionIndex];
     this.questions.splice(selectedQuestionIndex, 1);
   }
@@ -217,19 +222,20 @@ export class TakeQuizComponent implements OnInit {
   submitAnswer() {
     if (this.questions.length > 0) {
       this.pager.index++;
-      var selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
+      const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
       this.selectedQuestion = this.questions[selectedQuestionIndex];
       this.questions.splice(selectedQuestionIndex, 1);
-      var answeredQuestion: Question = new Question;
+      const answeredQuestion: Question = new Question;
       answeredQuestion.$key = this.selectedQuestion.$key;
       answeredQuestion.questionName = this.selectedQuestion.questionName;
       answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
       answeredQuestion.studentClassName = this.selectedClassName.value;
       answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
-      answeredQuestion.chapterName=this.selectedChapterName.value;
+      answeredQuestion.chapterName = this.selectedChapterName.value;
       answeredQuestion.sectionName = this.selectedSectionName.value;
 
-      this.quizService.submitAnswer(this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
+      this.quizService.submitAnswer(
+        this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
     }
     // this.question = new Question;
     // this.question.$key = this.serialNumber.value;
@@ -249,20 +255,20 @@ export class TakeQuizComponent implements OnInit {
   }
 
   tempMethod() {
-    var qn = new Question;
+    const qn = new Question;
 
-    qn.$key = "1";
-    qn.chapterName = "Question";
-    qn.optionA = "A";
-    qn.optionB = "B";
-    qn.optionC = "C";
-    qn.optionD = "D";
+    qn.$key = '1';
+    qn.chapterName = 'Question';
+    qn.optionA = 'A';
+    qn.optionB = 'B';
+    qn.optionC = 'C';
+    qn.optionD = 'D';
 
-    qn.schoolEMIS = "37230015";
-    qn.studentClassName = "Class Test";
-    qn.studentSubjectName = "Islamiat";
-    qn.chapterName = "Namaz";
-    qn.sectionName = "Farz Namaz";
+    qn.schoolEMIS = '37230015';
+    qn.studentClassName = 'Class Test';
+    qn.studentSubjectName = 'Islamiat';
+    qn.chapterName = 'Namaz';
+    qn.sectionName = 'Farz Namaz';
     console.log('called init');
     this.questionService.insertQuestion(qn);
   }
