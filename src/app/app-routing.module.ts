@@ -89,11 +89,14 @@ const appRoutes: Routes = [
   {    path: 'ac',    component: AcComponent  },
 
   // addmin rout
-  { path: 'mylogin', component: MyLoginComponent}
+  { path: 'mylogin', component: MyLoginComponent},
+  // { path: 'mylogin', component: MyLoginComponent, canActivate: [AuthGuard] },
+  // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  // { path: 'user', component: UserComponent,  resolve: { data: UserResolver}}
 
   // default paths
-  { path: '', redirectTo: '/classes', pathMatch: 'full' },
-  { path: '**', component: ClassesComponent }
+  { path: '', redirectTo: '/mylogin', pathMatch: 'full' },
+  { path: '**', component: MyLoginComponent }
 ];
 
 @NgModule({
