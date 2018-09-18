@@ -1,6 +1,6 @@
 <mat-card class="full-width">
 
-  <input type="text" autofocus style="width:0px" />
+  <input type="text" autofocus style="width:0px" value="test"/>
   <mat-form-field>
     <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test"
       (selectionChange)="getStudentsClassesList($event.value)">
