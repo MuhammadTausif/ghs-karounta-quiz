@@ -33,6 +33,7 @@ import { QuizTestComponent } from './practice/ng2-quiz-master/app/quiz-test/quiz
 import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.component';
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
+import { MyLoginComponent } from './practice/components/my-login/my-login.component';
 
 const appRoutes: Routes = [
 
@@ -86,6 +87,9 @@ const appRoutes: Routes = [
   {    path: 'mobile',    component: MobileComponent  },
   {    path: 'tv',    component: TvComponent  },
   {    path: 'ac',    component: AcComponent  },
+
+  // addmin rout
+  { path: 'mylogin', component: MyLoginComponent}
 
   // default paths
   { path: '', redirectTo: '/classes', pathMatch: 'full' },

@@ -70,6 +70,7 @@ import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.c
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { MyLoginComponent } from './practice/components/my-login/my-login.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -148,9 +149,11 @@ import { MyLoginComponent } from './practice/components/my-login/my-login.compon
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule ,
-    MatSelectModule, MatRadioModule,
-    MatDialogModule, MatDividerModule,    MatExpansionModule, MatTabsModule, MatButtonToggleModule, MatStepperModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatNativeDateModule,
-    MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule,
+    MatSelectModule, MatRadioModule, MatProgressSpinnerModule,
+    MatDialogModule, MatDividerModule,    MatExpansionModule, MatTabsModule, MatButtonToggleModule,
+     MatStepperModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule
+    , MatTableModule, MatPaginatorModule, MatSortModule,
     // Routing progress bar
     SlimLoadingBarModule,
   ],
