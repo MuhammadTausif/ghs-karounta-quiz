@@ -1,4 +1,4 @@
-export class Question{
+export class Question {
     $key: string;
     questionName: string;
     optionA: string;
@@ -10,6 +10,5 @@ export class Question{
     studentClassName: string;
     studentSubjectName: string;
     chapterName: string;
-    
     sectionName: string;
 }

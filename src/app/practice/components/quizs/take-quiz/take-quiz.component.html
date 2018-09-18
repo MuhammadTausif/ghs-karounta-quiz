@@ -2,7 +2,8 @@
 
   <input type="text" autofocus style="width:0px" />
   <mat-form-field>
-    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
+    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test"
+      (selectionChange)="getStudentsClassesList($event.value)">
       <mat-option *ngFor="let school of schoolsList" [value]="school.$key" autofocus>
         {{school.name}}
       </mat-option>
@@ -18,7 +19,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="selectedStudentRollNo" name="selectedStudentRollNo" placeholder="Select Student" required>
+    <mat-select [formControl]="selectedStudentRollNo" name="selectedStudentRollNo" placeholder="Select Student"
+      required>
       <mat-option *ngFor="let student of students" [value]="student.$key">
         {{student.name}}
       </mat-option>
@@ -26,8 +28,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Subject" (selectionChange)="getChaptersList(selectedSchoolEMIS.value, selectedClassName.value, $event.value)"
-      required>
+    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Subject"
+      (selectionChange)="getChaptersList(selectedSchoolEMIS.value, selectedClassName.value, $event.value)" required>
       <mat-option *ngFor="let studentsSubject of subjectsList" [value]="studentsSubject.$key">
         {{studentsSubject.$key}}
       </mat-option>
@@ -35,7 +37,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="selectedChapterName" name="selectedChapterName" placeholder="Select Chapter" (selectionChange)="getSactionsList(selectedSchoolEMIS.value, selectedClassName.value, selectedSubjectName.value, $event.value)"
+    <mat-select [formControl]="selectedChapterName" name="selectedChapterName" placeholder="Select Chapter"
+      (selectionChange)="getSactionsList(selectedSchoolEMIS.value, selectedClassName.value, selectedSubjectName.value, $event.value)"
       required>
       <mat-option *ngFor="let chapter of chaptersList" [value]="chapter.$key">
         {{chapter.$key}}
@@ -44,52 +47,44 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="selectedSectionName" name="selectedSectionName" placeholder="Select Section" (selectionChange)="getQuestionsList(selectedSchoolEMIS.value, selectedClassName.value, selectedSubjectName.value,  selectedChapterName.value, $event.value)"
+    <mat-select [formControl]="selectedSectionName" name="selectedSectionName" placeholder="Select Section"
+      (selectionChange)="getQuestionsList(selectedSchoolEMIS.value, selectedClassName.value, selectedSubjectName.value,  selectedChapterName.value, $event.value)"
       required>
       <mat-option *ngFor="let section of sectionsList" [value]="section.$key">
         {{section.$key}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  Question No: {{pager.index}} of {{totalQuestions}}
-  <h4>Time: {{startDateTime | date : 'HH:mm:ss'}} </h4>
-  <h4>Date: {{startDateTime | date : 'dd/MM/yyyy'}} </h4>
-  <div *ngIf="selectedQuestion">
-    <mat-card> <strong>{{selectedQuestion.$key}} : {{selectedQuestion.questionName}} </strong> </mat-card>
-    <mat-radio-group  [(formControl)]="selectedOption">
-      <mat-card>
-        <mat-radio-button value="A">{{selectedQuestion.optionA}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button value="B">{{selectedQuestion.optionB}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button value="C">{{selectedQuestion.optionC}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button value="D">{{selectedQuestion.optionD}} </mat-radio-button>
-      </mat-card>
-    </mat-radio-group>
+  <div *ngIf='startQuizStatus && !quizCompleted'>
+    Question No: {{pager.index}} of {{totalQuestions}}
+    <h4>Time: {{startDateTime | date : 'HH:mm:ss'}} </h4>
+    <h4>Date: {{startDateTime | date : 'dd/MM/yyyy'}} </h4>
+    <div *ngIf="selectedQuestion">
+      <mat-card> <strong>{{selectedQuestion.$key}} : {{selectedQuestion.questionName}} </strong> </mat-card>
+      <mat-radio-group [(formControl)]="selectedOption">
+        <mat-card>
+          <mat-radio-button value="A">{{selectedQuestion.optionA}} </mat-radio-button>
+        </mat-card>
+        <mat-card>
+          <mat-radio-button value="B">{{selectedQuestion.optionB}} </mat-radio-button>
+        </mat-card>
+        <mat-card>
+          <mat-radio-button value="C">{{selectedQuestion.optionC}} </mat-radio-button>
+        </mat-card>
+        <mat-card>
+          <mat-radio-button value="D">{{selectedQuestion.optionD}} </mat-radio-button>
+        </mat-card>
+      </mat-radio-group>
+    </div>
+
+    <button type="submit" mat-stroked-button color="accent" class="full-width" (click)="submitAnswer()">Submit Answer</button>
   </div>
 
-  <!-- <div *ngFor="let question of questions">
-    <mat-card> <strong>{{question.$key}} : {{question.questionName}} </strong> </mat-card>
-    <mat-radio-group>
-      <mat-card>
-        <mat-radio-button (change)="radioChange()" value="1">{{question.optionA}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button (change)="radioChange()" value="2">{{question.optionB}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button (change)="radioChange()" value="1">{{question.optionC}} </mat-radio-button>
-      </mat-card>
-      <mat-card>
-        <mat-radio-button (change)="radioChange()" value="2">{{question.optionD}} </mat-radio-button>
-      </mat-card>
-    </mat-radio-group>
-  </div> -->
+  <button *ngIf='!startQuizStatus' type="submit" mat-stroked-button color="accent" class="full-width" (click)="startQuiz()">
+    Start Quiz </button>
 
-  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="submitAnswer()">Add Student</button>
+  <button *ngIf='quizCompleted' type="submit" mat-stroked-button color="accent" class="full-width" (click)="restartQuiz()">
+    Restart Quiz</button>
 
 </mat-card>
+{{selectedChapterName.value}}

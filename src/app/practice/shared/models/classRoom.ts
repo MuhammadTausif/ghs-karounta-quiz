@@ -1,4 +1,4 @@
-import { School } from "./school.model";
+import { School } from './school.model';
 
 export class ClassRoom {
     id: number;

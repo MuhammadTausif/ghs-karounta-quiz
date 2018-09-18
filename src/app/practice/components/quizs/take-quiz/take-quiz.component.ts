@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Chapter } from '../../../shared/models/chapter.model';
+import { Question } from '../../../shared/models/question.model';
 import { School } from '../../../shared/models/school.model';
+import { Section } from '../../../shared/models/section.model';
+import { Student } from '../../../shared/models/student.model';
 import { StudentClass } from '../../../shared/models/studentClass.model';
 import { Subject as StudentSubject } from '../../../shared/models/subject.model';
-import { FormControl } from '@angular/forms';
-import { SchoolService } from '../../../shared/services/school.service';
-import { SubjectService } from '../../../shared/services/subject.service';
-import { StudentClassService } from '../../../shared/services/student-class.service';
 import { ChapterService } from '../../../shared/services/chapter.service';
-import { Router } from '@angular/router';
-import { SectionService } from '../../../shared/services/section.service';
-import { Section } from '../../../shared/models/section.model';
 import { QuestionService } from '../../../shared/services/question.service';
-import { Question } from '../../../shared/models/question.model';
 import { QuizService } from '../../../shared/services/quiz.service';
-import { Student } from '../../../shared/models/student.model';
+import { SchoolService } from '../../../shared/services/school.service';
+import { SectionService } from '../../../shared/services/section.service';
+import { StudentClassService } from '../../../shared/services/student-class.service';
 import { StudentService } from '../../../shared/services/student.service';
+import { SubjectService } from '../../../shared/services/subject.service';
 
 @Component({
   selector: 'app-take-quiz',
@@ -32,6 +32,11 @@ export class TakeQuizComponent implements OnInit {
   sectionsList: Section[];
   questions: Question[] = [];
   question: Question;
+  answeredQuestion: Question = new Question;
+
+  // quiz status
+  startQuizStatus = false;
+  quizCompleted = false;
 
   totalQuestions = this.questions.length;
   startDateTime: string;
@@ -214,44 +219,56 @@ export class TakeQuizComponent implements OnInit {
           this.totalQuestions = this.questions.length;
         });
       });
+  }
+
+  startQuiz() {
+    this.startQuizStatus = true;
+
+    this.pager.index++;
     const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
     this.selectedQuestion = this.questions[selectedQuestionIndex];
+    console.log(this.selectedQuestion);
     this.questions.splice(selectedQuestionIndex, 1);
+    this.answeredQuestion.$key = this.selectedQuestion.$key;
+    this.answeredQuestion.questionName = this.selectedQuestion.questionName;
+    this.answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
+    this.answeredQuestion.studentClassName = this.selectedClassName.value;
+    this.answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
+    this.answeredQuestion.chapterName = this.selectedChapterName.value;
+    this.answeredQuestion.sectionName = this.selectedSectionName.value;
   }
 
   submitAnswer() {
     if (this.questions.length > 0) {
-      this.pager.index++;
-      const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
-      this.selectedQuestion = this.questions[selectedQuestionIndex];
-      this.questions.splice(selectedQuestionIndex, 1);
-      const answeredQuestion: Question = new Question;
-      answeredQuestion.$key = this.selectedQuestion.$key;
-      answeredQuestion.questionName = this.selectedQuestion.questionName;
-      answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
-      answeredQuestion.studentClassName = this.selectedClassName.value;
-      answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
-      answeredQuestion.chapterName = this.selectedChapterName.value;
-      answeredQuestion.sectionName = this.selectedSectionName.value;
-
       this.quizService.submitAnswer(
-        this.selectedStudentRollNo.value, answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
+        this.selectedStudentRollNo.value, this.answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
+        this.pager.index++;
+        const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
+        this.selectedQuestion = this.questions[selectedQuestionIndex];
+        this.questions.splice(selectedQuestionIndex, 1);
+        this.answeredQuestion.$key = this.selectedQuestion.$key;
+        this.answeredQuestion.questionName = this.selectedQuestion.questionName;
+        this.answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
+        this.answeredQuestion.studentClassName = this.selectedClassName.value;
+        this.answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
+        this.answeredQuestion.chapterName = this.selectedChapterName.value;
+        this.answeredQuestion.sectionName = this.selectedSectionName.value;
+        this.quizCompleted = false;
+    } else {
+      this.quizCompleted = true;
     }
-    // this.question = new Question;
-    // this.question.$key = this.serialNumber.value;
-    // this.question.questionName = this.questionName.value;
-    // this.question.optionA = this.optionA.value;
-    // this.question.optionB = this.optionB.value;
-    // this.question.optionC = this.optionC.value;
-    // this.question.optionD = this.optionD.value;
+  }
 
-    // this.question.schoolEMIS = this.selectedSchoolEMIS.value;
-    // this.question.studentClassName = this.selectedClassName.value;
-    // this.question.studentSubjectName = this.selectedSubjectName.value;
-    // this.question.chapterName = this.selectedChapterName.value;
-    // this.question.sectionName = this.selectedSectionName.value;
-
-    // this.questionService.insertQuestion(this.question);
+  restartQuiz() {
+    this.quizCompleted = false;
+    this.getQuestionsList(
+      this.selectedSchoolEMIS.value,
+      this.selectedClassName.value,
+      this.selectedSubjectName.value,
+      this.selectedChapterName.value,
+      this.selectedSectionName.value
+    );
+    this.startQuiz();
   }
 
   tempMethod() {

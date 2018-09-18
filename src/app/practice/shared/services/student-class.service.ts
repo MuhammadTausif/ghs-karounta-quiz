@@ -18,9 +18,9 @@ export class StudentClassService {
   }
 
   getData() {
-    this.selectedSchool.$key = "-LJE4oEmVj4tgP5aaDyG";
+    this.selectedSchool.$key = '-LJE4oEmVj4tgP5aaDyG';
     this.studentsClassesList = this.firebase.list(`schools/-LJE4oEmVj4tgP5aaDyG/studentClasses`);
-    // this.studentsClassesList = this.firebase.list(`schools/${this.selectedSchool.$key}/studentClasses`)    
+    // this.studentsClassesList = this.firebase.list(`schools/${this.selectedSchool.$key}/studentClasses`)
     return this.studentsClassesList;
   }
 
@@ -50,5 +50,4 @@ export class StudentClassService {
   deleteStudentClass($key: string) {
     this.studentsClassesList.remove($key);
   }
-
 }

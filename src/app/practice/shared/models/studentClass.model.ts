@@ -1,5 +1,5 @@
-import { Teacher } from "./teacher";
-import { ClassRoom } from "./classRoom";
+import { Teacher } from './teacher';
+import { ClassRoom } from './classRoom';
 
 export class StudentClass {
     $key: string;

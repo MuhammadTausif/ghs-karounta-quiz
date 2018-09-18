@@ -69,6 +69,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.component';
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
+import { MyLoginComponent } from './practice/components/my-login/my-login.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
     QuizTestComponent,
     MobileComponent,
     AcComponent,
-    TvComponent
+    TvComponent,
+    MyLoginComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
