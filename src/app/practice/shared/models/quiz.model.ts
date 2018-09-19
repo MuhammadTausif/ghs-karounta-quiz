@@ -1,7 +1,7 @@
-import { Question } from "./question.model";
-import { Answer } from "./answer.model";
+import { Question } from './question.model';
+import { Answer } from './answer.model';
 
-export class Quiz{
+export class Quiz {
     $key: string;
     dateAndTime: string;
     questions: Question[];
