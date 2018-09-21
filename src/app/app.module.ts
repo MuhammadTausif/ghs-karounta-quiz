@@ -20,9 +20,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // import { ItemsListComponent } from './practice/angular2FirebaseCRUD/items/items-list/items-list.component';
 // import { ItemsDetailComponent } from './practice/angular2FirebaseCRUD/items/items-detail/items-detail.component';
 // import { ItemsFormComponent } from './practice/angular2FirebaseCRUD/items/items-form/items-form.component';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../environments/environment';
 import { Angular6FireBase2SetupComponent } from './practice/angular6-fire-base2-setup/angular6-fire-base2-setup.component';
 // import { CustomerDetailsComponent } from './practice/customers/customer-details/customer-details.component';
 // import { CustomersListComponent } from './practice/customers/customers-list/customers-list.component';
@@ -74,6 +71,16 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserLoginComponent } from './practice/components/users/user-login/user-login.component';
 import { UserProfileComponent } from './practice/components/users/user-profile/user-profile.component';
 import { MyAuthService } from './practice/core/my-auth.service';
+
+// Angular Firebase Imports
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
+import { LoginPracticeComponent } from './practice/auth-practice/login-practice/login-practice.component';
+import { UserPracticeComponent } from './practice/auth-practice/user-practice/user-practice.component';
+import { RegisterPracticeComponent } from './practice/auth-practice/register-practice/register-practice.component';
 
 @NgModule({
   declarations: [
@@ -133,14 +140,22 @@ import { MyAuthService } from './practice/core/my-auth.service';
     TvComponent,
     MyLoginComponent,
     UserLoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    LoginPracticeComponent,
+    UserPracticeComponent,
+    RegisterPracticeComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
     HeroesModule,
     HttpClientModule,
+
+    // Angular Firebase Import
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+
     BrowserModule,
     LayoutModule,
     CommonModule,
