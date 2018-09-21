@@ -71,6 +71,9 @@ import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { MyLoginComponent } from './practice/components/my-login/my-login.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { UserLoginComponent } from './practice/components/users/user-login/user-login.component';
+import { UserProfileComponent } from './practice/components/users/user-profile/user-profile.component';
+import { MyAuthService } from './practice/core/my-auth.service';
 
 @NgModule({
   declarations: [
@@ -128,7 +131,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MobileComponent,
     AcComponent,
     TvComponent,
-    MyLoginComponent
+    MyLoginComponent,
+    UserLoginComponent,
+    UserProfileComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
@@ -157,7 +162,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     // Routing progress bar
     SlimLoadingBarModule,
   ],
-  providers: [],
+  providers: [MyAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
