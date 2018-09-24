@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/item';
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+// import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { ItemService } from '../shared/item.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ItemService } from '../shared/item.service';
 })
 export class ItemsListComponent implements OnInit {
 
-  public items: FirebaseListObservable<Item[]>;
+  // public items: FirebaseListObservable<Item[]>;
 
   constructor(private itemSvc: ItemService) { }
 

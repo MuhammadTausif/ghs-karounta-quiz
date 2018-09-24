@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <mat-card class="add-new-record-form-card">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
@@ -20,3 +21,27 @@
   </mat-card-content>
 
 </mat-card>
+=======
+<mat-card class="add-new-record-form-card">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Login</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card-content>
+    <form class="login" >
+      <mat-form-field class="full-width" style="margin-top: 30px">
+        <input matInput  placeholder="Username" [(ngModel)]="username" type="text" name="username" required>
+      </mat-form-field>
+      <mat-form-field class="full-width" style="margin-bottom: 30px">
+        <input matInput placeholder="Password"  [(ngModel)]="password" type="password" name="password" required>
+      </mat-form-field>
+      <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>
+>>>>>>> 6da4101cd46dd41ac6a8f8c946f5c083e9013250
