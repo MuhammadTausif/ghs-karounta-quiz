@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
         });
         this.navList = [
             {
-                categoryName: 'Login', icon: 'power', dropDown: false,
+                categoryName: 'Admin', icon: 'power', dropDown: false,
                 subCategory:
                     [
                         { subCategoryName: 'Login', listIcon: 'add', subCategoryLink: '/mylogin', visable: true, },

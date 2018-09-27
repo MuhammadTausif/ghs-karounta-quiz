@@ -81,6 +81,7 @@ import { environment } from '../environments/environment';
 import { LoginPracticeComponent } from './practice/auth-practice/login-practice/login-practice.component';
 import { UserPracticeComponent } from './practice/auth-practice/user-practice/user-practice.component';
 import { RegisterPracticeComponent } from './practice/auth-practice/register-practice/register-practice.component';
+import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ import { RegisterPracticeComponent } from './practice/auth-practice/register-pra
     UserProfileComponent,
     LoginPracticeComponent,
     UserPracticeComponent,
-    RegisterPracticeComponent
+    RegisterPracticeComponent,
+    RegisterStudentComponent
   ],
   imports: [
     // ToastrModule.forRoot(),

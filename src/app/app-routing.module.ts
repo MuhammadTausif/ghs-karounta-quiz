@@ -90,6 +90,7 @@ const appRoutes: Routes = [
 
   // addmin rout
   { path: 'mylogin', component: MyLoginComponent},
+  // { path: 'register-student', component: RegisterStudentCompoens }
   // { path: 'mylogin', component: MyLoginComponent, canActivate: [AuthGuard] },
   // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   // { path: 'user', component: UserComponent,  resolve: { data: UserResolver}}
