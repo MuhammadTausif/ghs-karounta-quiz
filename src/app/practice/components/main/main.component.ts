@@ -39,8 +39,8 @@ export class MainComponent implements OnInit {
                 subCategory:
                     [
                         { subCategoryName: 'Login', listIcon: 'add', subCategoryLink: '/mylogin', visable: true, },
-                        { subCategoryName: 'List of Classes', listIcon: 'list',
-                         subCategoryLink: '/classes-list-for-students', visable: true, },
+                        { subCategoryName: 'Register Student', listIcon: 'key',
+                         subCategoryLink: '/register-student', visable: true, },
                     ]
             },
             {

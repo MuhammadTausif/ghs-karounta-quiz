@@ -34,6 +34,7 @@ import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.c
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { MyLoginComponent } from './practice/components/my-login/my-login.component';
+import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
 
 const appRoutes: Routes = [
 
@@ -90,7 +91,7 @@ const appRoutes: Routes = [
 
   // addmin rout
   { path: 'mylogin', component: MyLoginComponent},
-  // { path: 'register-student', component: RegisterStudentCompoens }
+  { path: 'register-student', component: RegisterStudentComponent },
   // { path: 'mylogin', component: MyLoginComponent, canActivate: [AuthGuard] },
   // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   // { path: 'user', component: UserComponent,  resolve: { data: UserResolver}}

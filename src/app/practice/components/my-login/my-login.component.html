@@ -15,9 +15,10 @@
       <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
 
       <button mat-raised-button (click)="login()" color="primary">Login</button>
+      <br>
+      <div>Don't have account, please register <a [routerLink]="['/register-student']" routerLinkActive="router-link-active"  >Register</a> </div>
 
     </form>
   </mat-card-content>
 
 </mat-card>
-
