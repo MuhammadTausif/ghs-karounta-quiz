@@ -7,14 +7,14 @@
   <mat-card-content>
     <form class="login" >
       <mat-form-field class="full-width" style="margin-top: 30px">
-        <input matInput  placeholder="Username" [(ngModel)]="username" type="text" name="username" required>
+        <input matInput  placeholder="Email" [(ngModel)]="email" type="text" name="email" required>
       </mat-form-field>
       <mat-form-field class="full-width" style="margin-bottom: 30px">
-        <input matInput placeholder="Password"  [(ngModel)]="password" type="password" name="password" required>
+        <input matInput  placeholder="Password"  [(ngModel)]="password" type="password" name="password" required>
       </mat-form-field>
       <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
 
-      <button mat-raised-button (click)="register()" color="primary">Register</button>
+      <button mat-raised-button color="primary">Register</button>
       <br>
       <br>
       <div>Already registered, please <a [routerLink]="['/mylogin']" routerLinkActive="router-link-active"  >Login</a> </div>
