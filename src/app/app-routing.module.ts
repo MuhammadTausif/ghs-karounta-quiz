@@ -35,6 +35,7 @@ import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { MyLoginComponent } from './practice/components/my-login/my-login.component';
 import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
+import { MyAuthGuard } from './practice/core/my-auth.guard';
 
 const appRoutes: Routes = [
 
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
   { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
   { path: 'subjects-list-for-tests', component: SubjectsListForTestsComponent },
   { path: 'tests-list-for-tests', component: ListTestsComponent },
-  { path: 'schools-list', component: SchoolsListComponent },
+  { path: 'schools-list', component: SchoolsListComponent, canActivate: [MyAuthGuard] },
   { path: 'subjects-list-in-classes', component: SubjectsListInClassComponent },
   { path: 'chapters-list-of-subects', component: ChaptersListForTestsComponent },
   { path: 'sectioins-list-of-chapters', component: SectionsListForTestsComponent },

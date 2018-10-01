@@ -12,15 +12,16 @@ export class MyLoginService {
 
   constructor(private afa: AngularFireAuth) { }
 
-  login(username: string, password: string){
-    this.afa.auth.createUserAndRetrieveDataWithEmailAndPassword(username, password).then(
-      res=> {
-        console.log('Regitered User is: ', res);
-      }
-    )
+  login(email: string, password: string){
+    firebase.auth().signInWithEmailAndPassword(email, password);
+    // this.afa.auth.createUserAndRetrieveDataWithEmailAndPassword(username, password).then(
+    //   res=> {
+    //     console.log('Regitered User is: ', res);
+    //   }
+    // )
     // firebase.auth().onAuthStateChanged()
-    firebase.auth().signOut();
-    console.warn("This is user"+firebase.auth().currentUser.email);
+    // firebase.auth().signOut();
+    // console.warn("This is user"+firebase.auth().currentUser.email);
   }
 
   loginWithGoogle(username: string, password: string) {

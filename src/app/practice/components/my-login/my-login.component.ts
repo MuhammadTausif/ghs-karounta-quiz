@@ -12,13 +12,26 @@ export class MyLoginComponent implements OnInit {
 
   username: string;
   password: string;
+  user = firebase.auth().currentUser;
 
-  constructor(private myLoginService: MyLoginService) { }
+  constructor(private myLoginService: MyLoginService) {
+    this.username = 'abc@email.com';
+    this.password = 'pass_123';
+   }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(
+      function(user){
+        this.user = firebase.auth().currentUser;
+      }
+    );
   }
 
   login() {
     this.myLoginService.login(this.username, this.password);
+  }
+
+  logout(){
+    firebase.auth().signOut();
   }
 }

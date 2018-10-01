@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterStudentService } from '../../shared/services/register-student.service';
+import { NgForm, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register-student',
@@ -10,11 +11,18 @@ export class RegisterStudentComponent implements OnInit {
 
   constructor( private registerStudentService: RegisterStudentService) { }
 
+  email = new FormControl('');
+  password = new FormControl('');
+
   ngOnInit() {
   }
 
-  registerStudent(email: string, password: string){
-    this.registerStudentService.registerStudent(email, password);
+  onSubmit(f: NgForm) {
+    console.log(f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
   }
 
+  registerStudent(){
+    this.registerStudentService.registerStudent(this.email.value, this.password.value);
+  }
 }
