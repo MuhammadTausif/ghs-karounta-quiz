@@ -98,7 +98,8 @@ const appRoutes: Routes = [
   // { path: 'user', component: UserComponent,  resolve: { data: UserResolver}}
 
   // default paths
-  { path: '', redirectTo: '/mylogin', pathMatch: 'full' },
+  // { path: '', redirectTo: '/mylogin', pathMatch: 'full' },
+  { path: '', redirectTo: '/  classes-list-for-students', pathMatch: 'full' },
   { path: '**', component: MyLoginComponent }
 ];
 

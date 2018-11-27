@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sis-app": {
+    "ghs-karounta-quiz": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -137,5 +137,5 @@
       }
     }
   },
-  "defaultProject": "sis-app"
+  "defaultProject": "ghs-karounta-quiz"
 }
