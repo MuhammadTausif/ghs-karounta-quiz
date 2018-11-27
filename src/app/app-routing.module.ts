@@ -47,7 +47,7 @@ const appRoutes: Routes = [
   { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
   { path: 'subjects-list-for-tests', component: SubjectsListForTestsComponent },
   { path: 'tests-list-for-tests', component: ListTestsComponent },
-  { path: 'schools-list', component: SchoolsListComponent, canActivate: [MyAuthGuard] },
+  { path: 'schools-list', component: SchoolsListComponent},
   { path: 'subjects-list-in-classes', component: SubjectsListInClassComponent },
   { path: 'chapters-list-of-subects', component: ChaptersListForTestsComponent },
   { path: 'sectioins-list-of-chapters', component: SectionsListForTestsComponent },
@@ -85,21 +85,8 @@ const appRoutes: Routes = [
   // Dialog box rout
   { path: 'dialog-in-action', component: DialogBoxComponent },
 
-  // routing-progress-bar routs
-  {    path: 'mobile',    component: MobileComponent  },
-  {    path: 'tv',    component: TvComponent  },
-  {    path: 'ac',    component: AcComponent  },
-
-  // addmin rout
-  { path: 'mylogin', component: MyLoginComponent},
-  { path: 'register-student', component: RegisterStudentComponent },
-  // { path: 'mylogin', component: MyLoginComponent, canActivate: [AuthGuard] },
-  // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  // { path: 'user', component: UserComponent,  resolve: { data: UserResolver}}
-
   // default paths
-  // { path: '', redirectTo: '/mylogin', pathMatch: 'full' },
-  { path: '', redirectTo: '/  classes-list-for-students', pathMatch: 'full' },
+  { path: '', redirectTo: '/classes-list-for-students', pathMatch: 'full' },
   { path: '**', component: MyLoginComponent }
 ];
 
@@ -107,7 +94,6 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      //   { enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [
