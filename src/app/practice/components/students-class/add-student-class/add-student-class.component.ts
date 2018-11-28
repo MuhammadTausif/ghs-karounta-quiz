@@ -40,5 +40,6 @@ export class AddStudentClassComponent implements OnInit {
 
   insertStudentClass(studentsClassForm: NgForm) {
     this.studentClassService.insertStudentClass(studentsClassForm.value, this.selectedSchoolEMIS);
+    this.router.navigate(['/classes-list-for-students']);
   }
 }
