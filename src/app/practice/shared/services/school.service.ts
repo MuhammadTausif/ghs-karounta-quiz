@@ -6,6 +6,7 @@ import { School } from '../models/school.model';
   providedIn: 'root'
 })
 export class SchoolService {
+  
   schoolList: AngularFireList<any>;
   selectedSchool: School = new School();
 
@@ -26,13 +27,6 @@ export class SchoolService {
       district: school.district,
       postOffice: school.postOffice
     });
-    // this.schoolList.push({
-    //   name: school.name,
-    //   EMIS: school.EMIS,
-    //   tehsil: school.tehsil,
-    //   district: school.district,
-    //   postOffice: school.postOffice
-    // });
   }
 
   updateSchool(school: School) {

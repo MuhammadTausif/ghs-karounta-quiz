@@ -1,3 +1,56 @@
-<p>
-  students-classes-list works!
-</p>
+<div class="list-header">
+  <h4>List of Classes</h4>
+  <button mat-stroked-button color="accent" routerLink="/add-class">Add New Class</button>
+</div>
+
+<table mat-table [dataSource]="studentClassesList" class="mat-elevation-z8 full-width">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Class Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.$key}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="incharge">
+    <th mat-header-cell *matHeaderCellDef> Incharge </th>
+    <td mat-cell *matCellDef="let element"> {{element.incharge}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="session">
+    <th mat-header-cell *matHeaderCellDef> Session </th>
+    <td mat-cell *matCellDef="let element"> {{element.session}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="students">
+    <th mat-header-cell *matHeaderCellDef> Students </th>
+    <td mat-cell *matCellDef="let element"> {{element.tehsil}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="subjects">
+    <th mat-header-cell *matHeaderCellDef> Subjects </th>
+    <td mat-cell *matCellDef="let element"> {{element.tehsil}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="tests">
+    <th mat-header-cell *matHeaderCellDef> Tests </th>
+    <td mat-cell *matCellDef="let element"> {{element.tehsil}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon class="example-icon">info</mat-icon>
+      <mat-icon class="example-icon">edit</mat-icon>
+      <mat-icon class="example-icon">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedStudentsClassesColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedStudentsClassesColumns;"></tr>
+</table>

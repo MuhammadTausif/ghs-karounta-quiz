@@ -14,7 +14,7 @@ export class StudentClassService {
 
 
   constructor(private firebase: AngularFireDatabase) {
-
+    this.getStudentsClassesList("37230015");
   }
 
   getData() {
@@ -32,7 +32,8 @@ export class StudentClassService {
   }
 
   getStudentsClassesList(selectedSchoolEMIS: string): AngularFireList<any> {
-    return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses`);
+    this.studentsClassesList = this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses`);
+    return this.studentsClassesList;
   }
 
   updateStudentClass(studentClass: StudentClass) {
