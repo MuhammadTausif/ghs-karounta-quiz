@@ -28,8 +28,9 @@ export class StudentsClassesListComponent implements OnInit {
         item.forEach(element => {
           var y = element.payload.toJSON();
           y["$key"] = element.key;
-          this.studentClassesList.push(y as StudentClass);
+          this.studentClassesList.push(y as StudentClass);        
         });
+        console.log(this.studentClassesList);
       });
   }
 }

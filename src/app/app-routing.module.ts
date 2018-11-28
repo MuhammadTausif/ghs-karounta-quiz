@@ -41,7 +41,7 @@ const appRoutes: Routes = [
 
   // List routes
   { path: 'classes', component: ClassesComponent },
-  { path: 'student-list', component: StudentsListComponent },
+  { path: 'students-list', component: StudentsListComponent },
   { path: 'teacher-list', component: ListTeachersComponent },
   { path: 'classes-list-for-students', component: StudentsClassesListComponent },
   { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
@@ -87,7 +87,7 @@ const appRoutes: Routes = [
 
   // default paths
   { path: '', redirectTo: '/classes-list-for-students', pathMatch: 'full' },
-  { path: '**', component: MyLoginComponent }
+  { path: '**', component: StudentsClassesListComponent }
 ];
 
 @NgModule({
