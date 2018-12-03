@@ -50,4 +50,5 @@ export class SectionsListForTestsComponent implements OnInit {
     this.sectionService.selectedSectionName = selectedSectionName;
     this.router.navigate(['/questions-list-of-sections']);
   }
+
 }

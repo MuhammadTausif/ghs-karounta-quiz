@@ -25,6 +25,11 @@ export class AddSectionComponent implements OnInit {
   chaptersList: Chapter[];
   section: Section;
 
+  selectedStudentClassKey = this.studentsClassService.selectedStudentClassKey;
+  selectedSubject = this.subjectService.selectedSubjectName;
+  selectedChapter = this.chapterService.selectedChapterName;
+  
+
   // Form Controls
   name = new FormControl('');
   serialNumber = new FormControl('');
@@ -107,11 +112,12 @@ export class AddSectionComponent implements OnInit {
     this.section = new Section();
     this.section.serialNumber= this.serialNumber.value;
     this.section.name= this.name.value;
-    this.section.schoolEMIS= this.selectedSchoolEMIS.value;
-    this.section.studentClassName= this.selectedClassName.value;
-    this.section.studentSubjectName = this.selectedSubjectName.value;
-    this.section.chapterName= this.selectedChapterName.value;
+    this.section.schoolEMIS= "37230015"
+    this.section.studentClassName= this.selectedStudentClassKey;
+    this.section.studentSubjectName = this.selectedSubject;
+    this.section.chapterName= this.selectedChapter;
 
     this.sectionService.insertSection(this.section);
+    this.router.navigate(['/sections-list-of-chapters']);
   }
 }
