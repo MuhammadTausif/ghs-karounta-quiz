@@ -49,8 +49,8 @@ const appRoutes: Routes = [
   { path: 'tests-list-for-tests', component: ListTestsComponent },
   { path: 'schools-list', component: SchoolsListComponent},
   { path: 'subjects-list-in-classes', component: SubjectsListInClassComponent },
-  { path: 'chapters-list-of-subects', component: ChaptersListForTestsComponent },
-  { path: 'sectioins-list-of-chapters', component: SectionsListForTestsComponent },
+  { path: 'chapters-list-of-subjects', component: ChaptersListForTestsComponent },
+  { path: 'sections-list-of-chapters', component: SectionsListForTestsComponent },
 
   // Add element routes
   { path: 'add-student', component: AddStudentComponent },

@@ -1,34 +1,12 @@
 <mat-card class="add-form-card">
 
-  <mat-form-field>
-    <mat-select [formControl]="selectedSchoolEMIS" name="selectedSchoolEMIS" placeholder="Select a School" id="test" (selectionChange)="getStudentsClassesList($event.value)">
-      <mat-option *ngFor="let school of schoolsList" [value]="school.$key">
-        {{school.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select [formControl]="selectedClassName" name="selectedClassName" placeholder="Select Class"  (selectionChange)="getSubjectsList(selectedSchoolEMIS.value, $event.value)">
-      <mat-option *ngFor="let studentsClass of studentsClassesList" [value]="studentsClass.$key">
-        {{studentsClass.$key}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select [formControl]="selectedSubjectName" name="selectedSubjectClassName" placeholder="Select Subject" required>
-      <mat-option *ngFor="let studentsSubject of subjectsList" [value]="studentsSubject.$key">
-        {{studentsSubject.$key}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
+  <h4> {{selectedStudentClassKey}} </h4>
+  <h4>Subject: {{selectedSubject}}</h4>
 
   <mat-form-field class="full-width">
     <input matInput type="text" [formControl]="name" placeholder="Name">
   </mat-form-field>
 
   <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="insertChapter()">Add Student</button>
-
+  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" [routerLink]="['/chapters-list-of-subjects']" routerLinkActive="router-link-active"  >Back to Subjects</button>
 </mat-card>

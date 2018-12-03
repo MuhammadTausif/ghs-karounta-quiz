@@ -7,6 +7,8 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 })
 export class SubjectService {
 
+  selectedSubjectName: string;
+
   constructor(private firebase: AngularFireDatabase) { }
 
   insertSubject(studentSubject: StudentSubject, selectedSchoolEMIS: string){

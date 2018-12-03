@@ -21,6 +21,9 @@ export class AddChapterComponent implements OnInit {
   studentsClassesList: StudentClass[];
   subjectsList: StudentSubject[];
 
+  selectedStudentClassKey = this.studentsClassService.selectedStudentClassKey;
+  selectedSubject = this.subjectService.selectedSubjectName;
+
   // Form Controls
   name = new FormControl('');
   selectedSchoolEMIS = new FormControl('');
@@ -84,7 +87,8 @@ export class AddChapterComponent implements OnInit {
   }
 
   insertChapter(){
-    this.chapterService.insertChapter(this.name.value, this.selectedSubjectName.value, this.selectedClassName.value, this.selectedSchoolEMIS.value);
+    this.chapterService.insertChapter(this.name.value, this.selectedSubject, this.selectedStudentClassKey, "37230015");
+    this.router.navigate(['/chapters-list-of-subjects']);
   }
 
 }

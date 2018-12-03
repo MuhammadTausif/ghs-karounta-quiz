@@ -68,7 +68,7 @@ export class MainComponent implements OnInit {
                     [
                         { subCategoryName: 'Add Chapter', listIcon: 'add', subCategoryLink: '/add-chapter', visable: true, },
                         { subCategoryName: 'List of Chapters', listIcon: 'list',
-                         subCategoryLink: '/chapters-list-of-subects', visable: true, },
+                         subCategoryLink: '/chapters-list-of-subjects', visable: true, },
                     ]
             },
             {
@@ -77,7 +77,7 @@ export class MainComponent implements OnInit {
                     [
                         { subCategoryName: 'Add Section', listIcon: 'add', subCategoryLink: '/add-section', visable: true, },
                         { subCategoryName: 'List of Sactions', listIcon: 'list',
-                         subCategoryLink: '/sectioins-list-of-chapters', visable: true, },
+                         subCategoryLink: '/sections-list-of-chapters', visable: true, },
                     ]
             },
             {

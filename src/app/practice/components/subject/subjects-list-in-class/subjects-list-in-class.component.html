@@ -22,7 +22,7 @@
   <ng-container matColumnDef="chapters">
     <th mat-header-cell *matHeaderCellDef> Chapters </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-stroked-button color="accent" routerLink="/">Open</button>
+      <button mat-stroked-button color="accent" (click)="openChaptersList(element.$key)" >Open</button>
     </td>
   </ng-container>
 

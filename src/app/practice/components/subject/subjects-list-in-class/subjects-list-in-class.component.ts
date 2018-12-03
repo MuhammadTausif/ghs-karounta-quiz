@@ -40,4 +40,11 @@ export class SubjectsListInClassComponent implements OnInit {
         console.log(this.subjectsList);
       });
   }
+
+  openChaptersList(selectedSubjectName: string){
+    this.studentsClassKey = this.studentClassService.selectedStudentClassKey;
+    this.subjectService.selectedSubjectName =  selectedSubjectName;
+    this.router.navigate(['\chapters-list-of-subjects']);
+  }
+
 }
