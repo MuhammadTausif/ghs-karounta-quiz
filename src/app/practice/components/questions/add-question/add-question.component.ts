@@ -27,6 +27,13 @@ export class AddQuestionComponent implements OnInit {
   chaptersList: Chapter[];
   sectionsList: Section[];
   question: Question;
+  questionsNumberList: any[];
+  lastNumber: number;
+
+  public studentsClassKey: string = this.studentsClassService.selectedStudentClassKey;
+  public subejectName: string = this.subjectService.selectedSubjectName;
+  public chapterName: string = this.chapterService.selectedChapterName;
+  public sectionName: string = this.sectionService.selectedSectionName;
 
   // Form Controls
   serialNumber = new FormControl('');
@@ -54,6 +61,7 @@ export class AddQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.getSchoolsList();
+    this.getQuestionsNumberList();
   }
 
   // Getting schools list
@@ -126,40 +134,65 @@ export class AddQuestionComponent implements OnInit {
       });
   }
 
-  insertQuestion(){
+  // Getting sections list
+  getQuestionsNumberList() {
+    var x = this.questionService.getQuestionsList(
+      "37230015",
+      this.studentsClassService.selectedStudentClassKey,
+      this.subjectService.selectedSubjectName,
+      this.chapterService.selectedChapterName,
+      this.sectionService.selectedSectionName);
+    x.snapshotChanges().subscribe(
+      item => {
+        this.questionsNumberList = [];
+        item.forEach(element => {
+          this.questionsNumberList.push(element.key);
+        });
+        // console.log(this.questionsNumberList);
+    
+        this.lastNumber = parseInt( this.questionsNumberList[this.questionsNumberList.length - 1]);
+        if(this.questionsNumberList.length == 0){ this.lastNumber = 0;}
+        this.lastNumber = this.lastNumber + 1;
+        // console.log("New Number is: " + lastNumber) ;        
+      });
+  }
+
+
+  insertQuestion() {
     this.question = new Question;
-    this.question.$key = this.serialNumber.value;
+    this.question.$key = this.lastNumber.toString();
     this.question.questionName = this.questionName.value;
     this.question.optionA = this.optionA.value;
     this.question.optionB = this.optionB.value;
     this.question.optionC = this.optionC.value;
     this.question.optionD = this.optionD.value;
 
-    this.question.schoolEMIS = this.selectedSchoolEMIS.value;
-    this.question.studentClassName = this.selectedClassName.value;
-    this.question.studentSubjectName = this.selectedSubjectName.value;
-    this.question.chapterName = this.selectedChapterName.value;
-    this.question.sectionName = this.selectedSectionName.value;
+    this.question.schoolEMIS = "37230015";
+    this.question.studentClassName = this.studentsClassService.selectedStudentClassKey;
+    this.question.studentSubjectName = this.subjectService.selectedSubjectName;
+    this.question.chapterName = this.chapterService.selectedChapterName;
+    this.question.sectionName = this.sectionService.selectedSectionName;
 
     this.questionService.insertQuestion(this.question);
+    this.router.navigate(['/questions-list-of-sections']);
   }
 
 
-  tempMethod(){
-    var qn=new Question;
+  tempMethod() {
+    var qn = new Question;
 
-    qn.$key="1";
-    qn.chapterName="Question";
-    qn.optionA="A";
-    qn.optionB="B";
-    qn.optionC="C";
-    qn.optionD="D";
+    qn.$key = "1";
+    qn.chapterName = "Question";
+    qn.optionA = "A";
+    qn.optionB = "B";
+    qn.optionC = "C";
+    qn.optionD = "D";
 
-    qn.schoolEMIS="37230015";
-    qn.studentClassName="Class Test";
-    qn.studentSubjectName="Islamiat";
-    qn.chapterName="Namaz";
-    qn.sectionName="Farz Namaz";
+    qn.schoolEMIS = "37230015";
+    qn.studentClassName = "Class Test";
+    qn.studentSubjectName = "Islamiat";
+    qn.chapterName = "Namaz";
+    qn.sectionName = "Farz Namaz";
     console.log('called init');
     this.questionService.insertQuestion(qn);
   }

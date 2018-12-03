@@ -7,6 +7,8 @@ import { Section } from '../models/section.model';
 })
 export class SectionService {
 
+  public selectedSectionName: string;
+
   constructor(private firebase: AngularFireDatabase) { }
 
   getSectionsList(selectedSchoolEMIS: string, studentClassName: string, selectedSubjectName: string, selectedChapterName: string) {

@@ -47,7 +47,7 @@ export class SectionsListForTestsComponent implements OnInit {
   }
 
   openQuestionsList(selectedSectionName: string) {
-    this.chapterService.selectedChapterName = selectedSectionName;
+    this.sectionService.selectedSectionName = selectedSectionName;
     this.router.navigate(['/questions-list-of-sections']);
   }
 }
