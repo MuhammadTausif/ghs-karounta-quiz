@@ -18,6 +18,7 @@ export class AddSubjectComponent implements OnInit {
 
   schoolsList: School[];
   studentsClassesList: StudentClass[];
+  selectedStudentsClassKey: string;
 
   // Form Controls
   name = new FormControl('');
@@ -37,6 +38,7 @@ export class AddSubjectComponent implements OnInit {
   ngOnInit() {
     this.getSchoolsList();
     this.getStudentsClassesList();
+    this.selectedStudentsClassKey = this.studentsClassService.selectedStudentClassKey;
   }
 
   // Getting schools list
@@ -70,10 +72,12 @@ export class AddSubjectComponent implements OnInit {
   insertSubject(studentForm?: NgForm) {
     var studentSubject: StudentSubject = new StudentSubject();
 
-    studentSubject.studentClassKey= this.selectedSubjectClassName.value;
+    // studentSubject.studentClassKey= this.selectedSubjectClassName.value;
+    studentSubject.studentClassKey= this.studentsClassService.selectedStudentClassKey;
     studentSubject.name = this.name.value;
     
-    this.subjectService.insertSubject(studentSubject, this.selectedSchoolEMIS.value);
+    this.subjectService.insertSubject(studentSubject, "37230015");
+    this.router.navigate(['/subjects-list-in-classes']);
   }
 
 }

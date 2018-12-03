@@ -34,8 +34,13 @@ export class StudentsClassesListComponent implements OnInit {
       });
   }
 
-  openStudentList(studentClassKey: string){
+  openStudentsList(studentClassKey: string){
     this.studentClassService.selectedStudentClassKey = studentClassKey;
     this.router.navigate(['\students-list']);
+  }
+
+  openSubjectsList(studentClassKey: string){
+    this.studentClassService.selectedStudentClassKey = studentClassKey;
+    this.router.navigate(['\subjects-list-in-classes']);
   }
 }
