@@ -6,6 +6,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class ChapterService {
 
+  selectedChapterName: string;
+
   constructor(private firebase: AngularFireDatabase) { }
 
   getChaptersList(selectedSchoolEMIS: string, studentClassName: string, selectedSubjectName: string) {

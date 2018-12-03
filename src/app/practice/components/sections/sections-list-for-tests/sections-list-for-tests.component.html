@@ -1,3 +1,47 @@
-<p>
-  sections-list-for-tests works!
-</p>
+<mat-chip-list>
+  <mat-chip color="primary" selected>{{studentsClassKey}}</mat-chip>
+  <mat-chip color="accent" selected>{{subejectName}}</mat-chip>
+  <mat-chip color="accent" selected>{{chapterName}}'s sections</mat-chip>
+</mat-chip-list>
+
+<div class="list-header">
+
+  <button mat-stroked-button color="accent" routerLink="/add-chapter">Add new Chapter</button>
+  <button mat-stroked-button color="accent" routerLink="/subjects-list-in-classes">Back to {{studentsClassKey}}'
+    subjects </button>
+</div>
+<table mat-table [dataSource]="sectionsList" class="mat-elevation-z8 classes-table">
+
+  <!-- Number Column -->
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> 1 </td>
+  </ng-container>
+
+  <!-- Enrollled Student Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.$key}} </td>
+  </ng-container>
+
+  <!-- Village Column -->
+  <ng-container matColumnDef="sections">
+    <th mat-header-cell *matHeaderCellDef> Sections </th>
+    <td mat-cell *matCellDef="let element">
+      <!-- <button mat-stroked-button color="accent" routerLink="/sections-list-of-chapters">Open</button> -->
+      <button mat-stroked-button color="accent" (click)="openQuestionsList(element.$key)">Open</button>
+    </td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon class="example-icon" routerLink="/add-student">edit</mat-icon>
+      <mat-icon class="example-icon" onclick="alert('Delete it?')">delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

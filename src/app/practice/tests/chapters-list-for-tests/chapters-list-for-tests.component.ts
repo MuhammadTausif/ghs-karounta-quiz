@@ -42,4 +42,8 @@ export class ChaptersListForTestsComponent implements OnInit {
       });
   }
   
+  openSectionsList(selectedChapterName: string){
+    this.chapterService.selectedChapterName = selectedChapterName;
+    this.router.navigate(['/sections-list-of-chapters']);
+  }
 }
