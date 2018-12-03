@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from '../../shared/services/subject.service';
+import { StudentClassService } from '../../shared/services/student-class.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subjects-list-for-tests',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectsListForTestsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private subjectService: SubjectService,
+    private studentClassService: StudentClassService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

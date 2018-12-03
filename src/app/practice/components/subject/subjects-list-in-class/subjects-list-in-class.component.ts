@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from 'src/app/practice/shared/services/subject.service';
+import { StudentClassService } from 'src/app/practice/shared/services/student-class.service';
+import { Router } from '@angular/router';
+import { Subject } from 'src/app/practice/shared/models/subject.model';
+import { StudentClass } from 'src/app/practice/shared/models/studentClass.model';
+import { School } from 'src/app/practice/shared/models/school.model';
 
 @Component({
   selector: 'app-subjects-list-in-class',
@@ -7,9 +13,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectsListInClassComponent implements OnInit {
 
-  constructor() { }
+  public subjectsList: Subject[];
+  public studentsClass: StudentClass;
+  public studentsClassKey: string;
+  public studentsSchool: School;
+
+  displayedColumns: string[] = ['number', 'name', 'chapters', 'action'];
+
+  constructor(
+    private subjectService: SubjectService,
+    private studentClassService: StudentClassService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.studentsClassKey = this.studentClassService.selectedStudentClassKey;
+    var x = this.subjectService.getSubjectsList("37230015", this.studentClassService.selectedStudentClassKey);
+    x.snapshotChanges().subscribe(
+      item => {
+        this.subjectsList = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.subjectsList.push(y as Subject);
+        });
+        console.log(this.subjectsList);
+      });
   }
-
 }
