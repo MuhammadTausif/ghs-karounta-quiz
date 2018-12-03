@@ -30,7 +30,12 @@ export class StudentsClassesListComponent implements OnInit {
           y["$key"] = element.key;
           this.studentClassesList.push(y as StudentClass);        
         });
-        console.log(this.studentClassesList);
+        // console.log(this.studentClassesList);
       });
+  }
+
+  openStudentList(studentClassKey: string){
+    this.studentClassService.selectedStudentClassKey = studentClassKey;
+    this.router.navigate(['\students-list']);
   }
 }

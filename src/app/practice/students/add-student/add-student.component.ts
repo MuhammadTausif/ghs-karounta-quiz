@@ -21,11 +21,18 @@ export class AddStudentComponent implements OnInit {
   // selectedSchoolEMIS: string;
   schoolsList: School[];
   studentsClassesList: StudentClass[];
+  studentClassKey: string = this.studentsClassService.selectedStudentClassKey;
+  studentsNumbersList: any[];
+  universalStudentsNumbersList: any[] = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"];
+  studentsNumbers: any[];
+  studentsList: Student[];
 
+
+  // Form controls
   name = new FormControl('');
   fatherName = new FormControl('');
   address = new FormControl('');
-  phone= new FormControl('');
+  phone = new FormControl('');
   studentClass = new FormControl('');
   rollNumber = new FormControl('');
   selectedSchoolEMIS = new FormControl('');
@@ -41,6 +48,8 @@ export class AddStudentComponent implements OnInit {
   ngOnInit() {
     this.getSchoolsList();
     this.getStudentsClassesList();
+    this.getStudentsList("37230015", this.studentClassKey);
+    this.getStudentsNumberList("37230015", this.studentClassKey);
   }
 
   // Getting schools list
@@ -71,22 +80,57 @@ export class AddStudentComponent implements OnInit {
       });
   }
 
+  // Getting students list
+  getStudentsList(selectedSchoolEMIS?: string, selectedStudentClassKey?: string) {
+
+    this.studentClassKey = this.studentsClassService.selectedStudentClassKey;
+    var x = this.studentService.getStudentsList("37230015", this.studentsClassService.selectedStudentClassKey);
+    x.snapshotChanges().subscribe(
+      item => {
+        this.studentsList = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.studentsList.push(y as Student);
+        });
+        console.log(this.studentsList);
+      });
+  }
+
+  // Getting students list
+  getStudentsNumberList(selectedSchoolEMIS?: string, selectedStudentClassKey?: string) {
+
+    this.studentClassKey = this.studentsClassService.selectedStudentClassKey;
+    var x = this.studentService.getStudentsList("37230015", this.studentsClassService.selectedStudentClassKey);
+    x.snapshotChanges().subscribe(
+      item => {
+        this.studentsNumbersList = [];
+        item.forEach(element => {
+          this.studentsNumbersList.push(element.key);
+        });
+        console.log(this.studentsNumbersList);
+        this.studentsNumbers = this.universalStudentsNumbersList.filter(x => this.studentsNumbersList.indexOf(x) < 0 );
+        console.log(this.studentsNumbers);
+      });
+  }
+
   insertStudent(studentForm?: NgForm) {
     var student: Student = new Student();
 
-    student.studentClassKey= this.studentClass.value;
+    student.studentClassKey = this.studentClassKey;
     student.name = this.name.value;
     student.fatherName = this.fatherName.value;
     student.phone = this.phone.value;
     student.address = this.address.value;
     student.rollNumber = this.rollNumber.value;
-
+    
     this.studentService.insertStudent(student, this.selectedSchoolEMIS.value);
+    this.router.navigate(['/students-list']);
   }
 
-  onSubmit() {  }
+  onSubmit() { }
 
-  insertStudentReactiveForm(){
+  insertStudentReactiveForm() {
     console.warn(this.name.value);
     console.warn(this.fatherName.value);
     console.warn(this.selectedSchoolEMIS.value);

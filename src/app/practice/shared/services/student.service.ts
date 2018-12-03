@@ -19,13 +19,14 @@ export class StudentService {
   }
 
   getStudentsList(selectedSchoolEMIS: string, studentClassName: string ){
-    return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/Students`);
+    this.studentsList = this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/Students`);
+    return this.studentsList;
     // return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/subjects`);
   }
 
 
   insertStudent(student: Student, selectedSchoolEMIS: string) {
-    this.firebase.database.ref(`schools/${selectedSchoolEMIS}/studentClasses/${student.studentClassKey}/Students/${student.rollNumber}`).set({
+    this.firebase.database.ref(`schools/37230015/studentClasses/${student.studentClassKey}/Students/${student.rollNumber}`).set({
       name: student.name,
       fatherName: student.fatherName,
       phone: student.phone,

@@ -10,8 +10,8 @@ export class StudentClassService {
 
   studentsClassesList: AngularFireList<any>;
   selectedStudentClass: StudentClass = new StudentClass();
+  selectedStudentClassKey: string;
   selectedSchool: School = new School();
-
 
   constructor(private firebase: AngularFireDatabase) {
     this.getStudentsClassesList("37230015");
