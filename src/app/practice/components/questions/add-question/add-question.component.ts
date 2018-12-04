@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chapter } from '../../../shared/models/chapter.model';
 import { School } from '../../../shared/models/school.model';
 import { StudentClass } from '../../../shared/models/studentClass.model';
@@ -29,6 +29,7 @@ export class AddQuestionComponent implements OnInit {
   question: Question;
   questionsNumberList: any[];
   lastNumber: number;
+  @ViewChild("questionName1") questionNameFeild: ElementRef;
 
   public studentsClassKey: string = this.studentsClassService.selectedStudentClassKey;
   public subejectName: string = this.subjectService.selectedSubjectName;
@@ -62,6 +63,7 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit() {
     this.getSchoolsList();
     this.getQuestionsNumberList();
+    this.questionNameFeild.nativeElement.focus();
   }
 
   // Getting schools list
@@ -157,8 +159,9 @@ export class AddQuestionComponent implements OnInit {
       });
   }
 
-
   insertQuestion() {
+    this.questionNameFeild.nativeElement.focus();
+
     this.question = new Question;
     this.question.$key = this.lastNumber.toString();
     this.question.questionName = this.questionName.value;
@@ -174,7 +177,16 @@ export class AddQuestionComponent implements OnInit {
     this.question.sectionName = this.sectionService.selectedSectionName;
 
     this.questionService.insertQuestion(this.question);
-    this.router.navigate(['/questions-list-of-sections']);
+    this.resetForm();
+    // this.router.navigate(['/questions-list-of-sections']);
+  }
+
+  resetForm(){
+    this.questionName.setValue("");
+    this.optionA.setValue("");
+    this.optionB.setValue("");
+    this.optionC.setValue("");
+    this.optionD.setValue("");
   }
 
 

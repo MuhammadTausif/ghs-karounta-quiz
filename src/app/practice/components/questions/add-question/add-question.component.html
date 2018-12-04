@@ -16,7 +16,7 @@
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input matInput type="text" [formControl]="questionName" name="questionName" placeholder="Question: ">
+    <input matInput type="text" #questionName1 [formControl]="questionName" name="questionName" placeholder="Question: ">
   </mat-form-field>
 
   <mat-form-field class="full-width">
@@ -34,6 +34,6 @@
 
 
   <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" (click)="insertQuestion()">Add Question</button>
-  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" [routerLink]="['/sections-list-of-chapters']" routerLinkActive="router-link-active" >Back to Questions</button>
+  <button type="submit" mat-stroked-button color="accent" class="half-width-49pr-05mrg" [routerLink]="['/questions-list-of-sections']" routerLinkActive="router-link-active" >Back to Questions</button>
 
 </mat-card>
