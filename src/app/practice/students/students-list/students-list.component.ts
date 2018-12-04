@@ -18,7 +18,7 @@ export class StudentsListComponent implements OnInit {
   public studentsClassKey: string;
   public studentsSchool: School;
 
-  displayedColumns: string[] = ['number', 'name', 'fatherName', 'village', 'action'];
+  displayedColumns: string[] = ['number', 'name', 'fatherName', 'village', 'result', 'action'];
   dataSource = ELEMENT_DATA;
 
   constructor(

@@ -18,4 +18,11 @@ export class TestService {
       chapterSection: test.chapterSections
     });
   }
+
+  activateTest(classRef: string, activeTestRef: string){
+    this.firebase.database.ref(classRef).set({
+      activeTestReference: activeTestRef
+    });
+  }
+  
 }

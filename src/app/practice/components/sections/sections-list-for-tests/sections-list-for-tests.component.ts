@@ -7,6 +7,7 @@ import { SubjectService } from 'src/app/practice/shared/services/subject.service
 import { Router } from '@angular/router';
 import { Section } from 'src/app/practice/shared/models/section.model';
 import { SectionService } from 'src/app/practice/shared/services/section.service';
+import { TestService } from 'src/app/practice/shared/services/test.service';
 
 @Component({
   selector: 'app-sections-list-for-tests',
@@ -28,6 +29,7 @@ export class SectionsListForTestsComponent implements OnInit {
     private chapterService: ChapterService,
     private studentClassService: StudentClassService,
     private subjectService: SubjectService,
+    private testService: TestService,
     private router: Router
   ) { }
 
@@ -49,6 +51,14 @@ export class SectionsListForTestsComponent implements OnInit {
   openQuestionsList(selectedSectionName: string) {
     this.sectionService.selectedSectionName = selectedSectionName;
     this.router.navigate(['/questions-list-of-sections']);
+  }
+
+  activateTest(selectedSectionName: string){
+    var activeTestKey = "schools/37230015/studentClasses/" + this.studentClassService.selectedStudentClassKey +"/Subjects/"+ this.subjectService.selectedSubjectName +"/chapters/"+ this.chapterService.selectedChapterName+"/sections/"+selectedSectionName;
+    var classPath = "schools/37230015/studentClasses/" + this.studentClassService.selectedStudentClassKey+"/tests";
+    console.log(activeTestKey);    
+    console.log(classPath);    
+    this.testService.activateTest(classPath, activeTestKey);
   }
 
 }
