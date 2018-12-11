@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Test } from 'src/app/practice/shared/models/test.model';
+import { TestService } from 'src/app/practice/shared/services/test.service';
 import { Chapter } from '../../../shared/models/chapter.model';
 import { Question } from '../../../shared/models/question.model';
 import { School } from '../../../shared/models/school.model';
@@ -24,6 +26,15 @@ import { SubjectService } from '../../../shared/services/subject.service';
 })
 export class TakeQuizComponent implements OnInit {
 
+  // Quiz parameters
+  selectedStudentClassKey: string = this.studentsClassService.selectedStudentClassKey;
+  selectedStudentNumber: string = this.studentService.selectedStudentKey;
+  selectedStudentName: string = this.studentService.selectedStudentName;
+  selectedSubject: string;
+  selectedChapter: string;
+  selectedSection: string;
+  activeTestKeyList: Test[];
+
   schoolsList: School[];
   studentsClassesList: StudentClass[];
   students: Student[];
@@ -33,12 +44,13 @@ export class TakeQuizComponent implements OnInit {
   questions: Question[] = [];
   question: Question;
   answeredQuestion: Question = new Question;
+  activeTest: Test[];
 
   // quiz status
   startQuizStatus = false;
   quizCompleted = false;
 
-  totalQuestions = this.questions.length;
+  totalQuestions: number; // = this.questions.length;
   startDateTime: string;
 
   pager = {
@@ -48,31 +60,45 @@ export class TakeQuizComponent implements OnInit {
   };
 
   // Demo question list must be deleted.
-  questionsDemo: Question[] = [
-    {
-      $key: '1', questionName: 'First Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
-      schoolEMIS: '37230015',
-      studentClassName: 'Class Test',
-      studentSubjectName: 'Islamiat',
-      chapterName: 'Namaz',
-      sectionName: 'Wajib Namaz'
-    },
-    {
-      $key: '2', questionName: 'Second Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
-      schoolEMIS: '37230015',
-      studentClassName: 'Class Test',
-      studentSubjectName: 'Islamiat',
-      chapterName: 'Namaz',
-      sectionName: 'Wajib Namaz'
-    },
-    {
-      $key: '3', questionName: 'Thired Question', optionA: 'A', optionB: 'B', optionC: 'C', optionD: 'D',
-      schoolEMIS: '37230015',
-      studentClassName: 'Class Test',
-      studentSubjectName: 'Islamiat',
-      chapterName: 'Namaz',
-      sectionName: 'Wajib Namaz'
-    }
+  questionsDemo: Question[] = [{
+    $key: '1',
+    questionName: 'First Question',
+    optionA: 'A',
+    optionB: 'B',
+    optionC: 'C',
+    optionD: 'D',
+    schoolEMIS: '37230015',
+    studentClassName: 'Class Test',
+    studentSubjectName: 'Islamiat',
+    chapterName: 'Namaz',
+    sectionName: 'Wajib Namaz'
+  },
+  {
+    $key: '2',
+    questionName: 'Second Question',
+    optionA: 'A',
+    optionB: 'B',
+    optionC: 'C',
+    optionD: 'D',
+    schoolEMIS: '37230015',
+    studentClassName: 'Class Test',
+    studentSubjectName: 'Islamiat',
+    chapterName: 'Namaz',
+    sectionName: 'Wajib Namaz'
+  },
+  {
+    $key: '3',
+    questionName: 'Thired Question',
+    optionA: 'A',
+    optionB: 'B',
+    optionC: 'C',
+    optionD: 'D',
+    schoolEMIS: '37230015',
+    studentClassName: 'Class Test',
+    studentSubjectName: 'Islamiat',
+    chapterName: 'Namaz',
+    sectionName: 'Wajib Namaz'
+  }
   ];
 
   // Form Controls
@@ -103,17 +129,27 @@ export class TakeQuizComponent implements OnInit {
     public schoolService: SchoolService,
     public subjectService: SubjectService,
     public studentsClassService: StudentClassService,
-    public studenttService: StudentService,
+    public studentService: StudentService,
     public chapterService: ChapterService,
     public sectionService: SectionService,
     public questionService: QuestionService,
     public quizService: QuizService,
+    public testService: TestService,
     public router: Router,
   ) { }
 
   ngOnInit() {
     this.getSchoolsList();
     this.startDateTime = Date.now().toString();
+    this.getActiveTestKey();
+    this.getQuestionsList(
+      "37230015",
+      this.selectedStudentClassKey,
+      this.selectedSubject,
+      this.selectedChapter,
+      this.selectedSection
+    );
+
   }
 
   // Getting schools list
@@ -129,6 +165,36 @@ export class TakeQuizComponent implements OnInit {
         });
       });
   }
+
+  // Getting chapters list
+  getActiveTestKey() {
+    const x = this.testService.getActiveTestKey(this.studentsClassService.selectedStudentClassKey);
+
+    x.snapshotChanges().subscribe(
+      item => {
+        this.activeTestKeyList = [];
+        item.forEach(element => {
+          const y = element.payload.toJSON();
+          y['$key'] = element.key;
+          this.activeTestKeyList.push(y as Test);
+        });
+        // console.log(this.activeTestKeyList);
+        this.activeTest = this.activeTestKeyList.filter(a => a.$key == "activeTest");
+        this.selectedSubject = this.activeTest[0].studentSubjectName;
+        this.selectedChapter = this.activeTest[0].chapterName;
+        this.selectedSection = this.activeTest[0].section;
+
+        this.getQuestionsList(
+          "37230015",
+          this.selectedStudentClassKey,
+          this.selectedSubject,
+          this.selectedChapter,
+          this.selectedSection
+        );
+
+      });
+  }
+
 
   // Getting students classes list
   getStudentsClassesList(selectedSchoolEMIS?: string) {
@@ -161,7 +227,7 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting subjects list
   getStudentsList(selectedSchoolEMIS?: string, studentClassName?: string) {
-    const x = this.studenttService.getStudentsList(selectedSchoolEMIS, studentClassName);
+    const x = this.studentService.getStudentsList(selectedSchoolEMIS, studentClassName);
     x.snapshotChanges().subscribe(
       item => {
         this.students = [];
@@ -203,8 +269,12 @@ export class TakeQuizComponent implements OnInit {
 
   // Getting sections list
   getQuestionsList(
-    selectedSchoolEMIS?: string, studentClassName?: string, selectedSubjectName?: string,
-    selectedChapterName?: string, selectedSectionName?: string) {
+    selectedSchoolEMIS?: string,
+    studentClassName?: string,
+    selectedSubjectName?: string,
+    selectedChapterName?: string,
+    selectedSectionName?: string
+  ) {
     const x = this.questionService.getQuestionsList(
       selectedSchoolEMIS,
       studentClassName,
@@ -218,10 +288,19 @@ export class TakeQuizComponent implements OnInit {
           this.questions.push(y as Question);
           this.totalQuestions = this.questions.length;
         });
+        console.log(this.questions);
       });
   }
 
   startQuiz() {
+    // this.getQuestionsList(
+    //   "37230015",
+    //   this.selectedStudentClassKey,
+    //   this.selectedSubject,
+    //   this.selectedChapter,
+    //   this.selectedSection
+    // );
+
     this.startQuizStatus = true;
 
     this.pager.index++;
@@ -231,43 +310,56 @@ export class TakeQuizComponent implements OnInit {
     this.questions.splice(selectedQuestionIndex, 1);
     this.answeredQuestion.$key = this.selectedQuestion.$key;
     this.answeredQuestion.questionName = this.selectedQuestion.questionName;
-    this.answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
-    this.answeredQuestion.studentClassName = this.selectedClassName.value;
-    this.answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
-    this.answeredQuestion.chapterName = this.selectedChapterName.value;
-    this.answeredQuestion.sectionName = this.selectedSectionName.value;
+    this.answeredQuestion.schoolEMIS = "37230015";
+    this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
+    this.answeredQuestion.studentSubjectName = this.selectedSubject;
+    this.answeredQuestion.chapterName = this.selectedChapter;
+    this.answeredQuestion.sectionName = this.selectedSection;
   }
 
-  submitAnswer() {
+  submitAnswer(selectedAnswer?: string) {
     if (this.questions.length > 0) {
       this.quizService.submitAnswer(
-        this.selectedStudentRollNo.value, this.answeredQuestion, this.selectedOption.value, this.startDateTime.toString());
-        this.pager.index++;
-        const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
-        this.selectedQuestion = this.questions[selectedQuestionIndex];
-        this.questions.splice(selectedQuestionIndex, 1);
-        this.answeredQuestion.$key = this.selectedQuestion.$key;
-        this.answeredQuestion.questionName = this.selectedQuestion.questionName;
-        this.answeredQuestion.schoolEMIS = this.selectedSchoolEMIS.value;
-        this.answeredQuestion.studentClassName = this.selectedClassName.value;
-        this.answeredQuestion.studentSubjectName = this.selectedSubjectName.value;
-        this.answeredQuestion.chapterName = this.selectedChapterName.value;
-        this.answeredQuestion.sectionName = this.selectedSectionName.value;
-        this.quizCompleted = false;
+        this.selectedStudentNumber,
+        this.answeredQuestion,
+        // this.selectedOption.value,
+        selectedAnswer,
+        this.startDateTime.toString()
+      );
+      this.pager.index++;
+      const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
+      this.selectedQuestion = this.questions[selectedQuestionIndex];
+      this.questions.splice(selectedQuestionIndex, 1);
+      this.answeredQuestion.$key = this.selectedQuestion.$key;
+      this.answeredQuestion.questionName = this.selectedQuestion.questionName;
+      this.answeredQuestion.schoolEMIS = "37230015";
+      this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
+      this.answeredQuestion.studentSubjectName = this.selectedSubject;
+      this.answeredQuestion.chapterName = this.selectedChapter;
+      this.answeredQuestion.sectionName = this.selectedSection;
+
+      this.quizCompleted = false;
     } else {
       this.quizCompleted = true;
+      this.router.navigate(['/view-result']);
     }
   }
 
   restartQuiz() {
     this.quizCompleted = false;
-    this.getQuestionsList(
-      this.selectedSchoolEMIS.value,
-      this.selectedClassName.value,
-      this.selectedSubjectName.value,
-      this.selectedChapterName.value,
-      this.selectedSectionName.value
-    );
+    // this.getQuestionsList(
+    //   this.activeTestKeyList[0].schoolEMIS,
+    //   this.activeTestKeyList[0].studentClassName,
+    //   this.activeTestKeyList[0].studentSubjectName,
+    //   this.activeTestKeyList[0].chapterName,
+    //   this.activeTestKeyList[0].section
+
+    //   // this.selectedSchoolEMIS.value,
+    //   // this.selectedClassName.value,
+    //   // this.selectedSubjectName.value,
+    //   // this.selectedChapterName.value,
+    //   // this.selectedSectionName.value
+    // );
     this.startQuiz();
   }
 

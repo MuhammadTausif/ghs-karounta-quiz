@@ -53,12 +53,21 @@ export class SectionsListForTestsComponent implements OnInit {
     this.router.navigate(['/questions-list-of-sections']);
   }
 
-  activateTest(selectedSectionName: string){
+  activateTest1(selectedSectionName: string){
     var activeTestKey = "schools/37230015/studentClasses/" + this.studentClassService.selectedStudentClassKey +"/Subjects/"+ this.subjectService.selectedSubjectName +"/chapters/"+ this.chapterService.selectedChapterName+"/sections/"+selectedSectionName;
     var classPath = "schools/37230015/studentClasses/" + this.studentClassService.selectedStudentClassKey+"/tests";
     console.log(activeTestKey);    
     console.log(classPath);    
     this.testService.activateTest(classPath, activeTestKey);
+  }
+
+  activateTest(selectedSectionName: string){
+    this.testService.activateTestDetail(
+      "37230015",
+      this.studentClassService.selectedStudentClassKey,
+      this.subjectService.selectedSubjectName,
+      this.chapterService.selectedChapterName,
+      selectedSectionName);
   }
 
 }

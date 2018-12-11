@@ -16,5 +16,5 @@ export class Test{
     chapterName: string;
 
     // Foreign Keys
-    section: Section;
+    section: string;
 }

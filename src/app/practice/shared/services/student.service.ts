@@ -8,6 +8,8 @@ import { Student } from '../models/student.model';
 export class StudentService {
   studentsList: AngularFireList<any>;
   selectedStudent: Student = new Student();
+  selectedStudentKey: string;
+  selectedStudentName: string;
   selectedClassName: string;
   selectedSchoolEMIS: string;
 

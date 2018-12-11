@@ -41,6 +41,12 @@ export class StudentsListComponent implements OnInit {
         // console.log(this.studentsList);
       });
   }
+
+  takeQuiz(selectedStudentKey?: string, selectedStudentName?: string){
+    this.studentService.selectedStudentKey = selectedStudentKey;
+    this.studentService.selectedStudentName = selectedStudentName;
+    this.router.navigate(['/take-quiz']);
+  }
 }
 
 export interface StudentsInterface {
