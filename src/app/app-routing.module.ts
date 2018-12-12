@@ -37,6 +37,7 @@ import { MyLoginComponent } from './practice/components/my-login/my-login.compon
 import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
 import { MyAuthGuard } from './practice/core/my-auth.guard';
 import { QuestionsListComponent } from './practice/components/questions/questions-list/questions-list.component';
+import { ResultsListComponent } from './practice/components/results/results-list/results-list.component';
 
 const appRoutes: Routes = [
 
@@ -53,6 +54,8 @@ const appRoutes: Routes = [
   { path: 'chapters-list-of-subjects', component: ChaptersListForTestsComponent },
   { path: 'sections-list-of-chapters', component: SectionsListForTestsComponent },
   { path: 'questions-list-of-sections', component: QuestionsListComponent },
+  { path: 'questions-list-of-sections', component: QuestionsListComponent },
+  { path: 'results-list', component: ResultsListComponent },
 
   // Add element routes
   { path: 'add-student', component: AddStudentComponent },

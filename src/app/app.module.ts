@@ -83,6 +83,7 @@ import { UserPracticeComponent } from './practice/auth-practice/user-practice/us
 import { RegisterPracticeComponent } from './practice/auth-practice/register-practice/register-practice.component';
 import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
 import { QuestionsListComponent } from './practice/components/questions/questions-list/questions-list.component';
+import { ResultsListComponent } from './practice/components/results/results-list/results-list.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { QuestionsListComponent } from './practice/components/questions/question
     UserPracticeComponent,
     RegisterPracticeComponent,
     RegisterStudentComponent,
-    QuestionsListComponent
+    QuestionsListComponent,
+    ResultsListComponent
   ],
   imports: [
     // ToastrModule.forRoot(),

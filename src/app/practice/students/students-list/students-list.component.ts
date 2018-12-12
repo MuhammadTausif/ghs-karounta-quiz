@@ -47,6 +47,12 @@ export class StudentsListComponent implements OnInit {
     this.studentService.selectedStudentName = selectedStudentName;
     this.router.navigate(['/take-quiz']);
   }
+
+  openResults(selectedStudentKey?: string, selectedStudentName?: string){
+    this.studentService.selectedStudentKey = selectedStudentKey;
+    this.studentService.selectedStudentName = selectedStudentName;
+    this.router.navigate(['/results-list']);
+  }
 }
 
 export interface StudentsInterface {

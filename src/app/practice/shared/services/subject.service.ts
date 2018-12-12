@@ -20,5 +20,10 @@ export class SubjectService {
   getSubjectsList(selectedSchoolEMIS: string, studentClassName: string ){
     return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/Subjects`);
   }
+
+  getSubjectsListofStudent(selectedSchoolEMIS: string, studentClassName: string, studentKey: string ){
+    return this.firebase.list(`schools/${selectedSchoolEMIS}/studentClasses/${studentClassName}/Students/${studentKey}/Subjects`);
+  }
+
 }
 

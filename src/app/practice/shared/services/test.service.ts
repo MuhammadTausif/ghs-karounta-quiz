@@ -11,13 +11,30 @@ export class TestService {
   constructor(private firebase: AngularFireDatabase) { }
 
   insertTest(test: Test) {
-    this.firebase.database.ref(`schools/${test.schoolEMIS}/studentClasses/${test.studentClassName}/Subjects/${test.studentSubjectName}/chapters/${test.chapterName}/tests`).push({
+    this.firebase.database.ref(`schools/${test.schoolEMIS}
+    /studentClasses/${test.studentClassName}
+    /Subjects/${test.studentSubjectName}
+    /chapters/${test.chapterName}
+    /tests`).push({
       noOfQuestion: test.noOfQuestions,
       totalTime: test.totalTime,
       creationTime: test.creationTime,
       chapterSection: test.chapterSections
     });
   }
+
+  insertTestOfSubect(test: Test, selectedSubjectName: string) {
+    this.firebase.database.ref(`schools/${test.schoolEMIS}
+    /studentClasses/${test.studentClassName}
+    /Subjects/${test.studentSubjectName}
+    /tests`).push({
+      noOfQuestion: test.noOfQuestions,
+      totalTime: test.totalTime,
+      creationTime: test.creationTime,
+      chapterSection: test.chapterSections
+    });
+  }
+
 
   activateTest(classRef: string, activeTestRef: string) {
     this.firebase.database.ref(classRef).set({
