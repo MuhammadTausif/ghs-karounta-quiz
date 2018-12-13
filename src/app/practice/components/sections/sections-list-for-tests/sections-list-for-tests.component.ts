@@ -61,8 +61,8 @@ export class SectionsListForTestsComponent implements OnInit {
     this.testService.activateTest(classPath, activeTestKey);
   }
 
-  activateTest(selectedSectionName: string){
-    this.testService.activateTestDetail(
+  activateSectionTest(selectedSectionName: string){
+    this.testService.activateSectionTest(
       "37230015",
       this.studentClassService.selectedStudentClassKey,
       this.subjectService.selectedSubjectName,

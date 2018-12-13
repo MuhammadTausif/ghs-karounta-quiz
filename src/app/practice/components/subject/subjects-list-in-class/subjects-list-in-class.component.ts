@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'src/app/practice/shared/models/subject.model';
 import { StudentClass } from 'src/app/practice/shared/models/studentClass.model';
 import { School } from 'src/app/practice/shared/models/school.model';
+import { TestService } from 'src/app/practice/shared/services/test.service';
 
 @Component({
   selector: 'app-subjects-list-in-class',
@@ -18,11 +19,12 @@ export class SubjectsListInClassComponent implements OnInit {
   public studentsClassKey: string;
   public studentsSchool: School;
 
-  displayedColumns: string[] = ['number', 'name', 'chapters', 'action'];
+  displayedColumns: string[] = ['number', 'name', 'chapters','test', 'action'];
 
   constructor(
     private subjectService: SubjectService,
     private studentClassService: StudentClassService,
+    private testService: TestService,
     private router: Router
   ) { }
 
@@ -46,5 +48,14 @@ export class SubjectsListInClassComponent implements OnInit {
     this.subjectService.selectedSubjectName =  selectedSubjectName;
     this.router.navigate(['\chapters-list-of-subjects']);
   }
+
+  activateSubjectTest(selectedSubjectName: string){
+    this.testService.activateSubjectTest(
+      "37230015",
+      this.studentClassService.selectedStudentClassKey,
+      selectedSubjectName
+      );
+  }
+
 
 }

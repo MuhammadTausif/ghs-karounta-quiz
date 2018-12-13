@@ -18,7 +18,7 @@ export class ChaptersListForTestsComponent implements OnInit {
   public studentsClassKey: string;
   public subejectName: string = this.subjectService.selectedSubjectName;
 
-  displayedColumns: string[] = ['number', 'name', 'sections', 'action'];
+  displayedColumns: string[] = ['number', 'name', 'sections','test', 'action'];
 
   constructor(
     private chapterService: ChapterService,

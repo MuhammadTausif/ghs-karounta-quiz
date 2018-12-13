@@ -16,11 +16,11 @@ export class TestService {
     /Subjects/${test.studentSubjectName}
     /chapters/${test.chapterName}
     /tests`).push({
-      noOfQuestion: test.noOfQuestions,
-      totalTime: test.totalTime,
-      creationTime: test.creationTime,
-      chapterSection: test.chapterSections
-    });
+        noOfQuestion: test.noOfQuestions,
+        totalTime: test.totalTime,
+        creationTime: test.creationTime,
+        chapterSection: test.chapterSections
+      });
   }
 
   insertTestOfSubect(test: Test, selectedSubjectName: string) {
@@ -28,11 +28,11 @@ export class TestService {
     /studentClasses/${test.studentClassName}
     /Subjects/${test.studentSubjectName}
     /tests`).push({
-      noOfQuestion: test.noOfQuestions,
-      totalTime: test.totalTime,
-      creationTime: test.creationTime,
-      chapterSection: test.chapterSections
-    });
+        noOfQuestion: test.noOfQuestions,
+        totalTime: test.totalTime,
+        creationTime: test.creationTime,
+        chapterSection: test.chapterSections
+      });
   }
 
 
@@ -42,7 +42,63 @@ export class TestService {
     });
   }
 
-  activateTestDetail(
+  activateSubjectTest(
+    selectedSchoolKey?: string,
+    selectedStudentClassKey?: string,
+    selectedSubject?: string
+  ) {
+    this.firebase.database.ref(
+      "schools/" + selectedSchoolKey +
+      "/studentClasses/" + selectedStudentClassKey +
+      "/tests/activeTest"
+    ).set({
+      schoolEMIS: selectedSchoolKey,
+      studentClassName: selectedStudentClassKey,
+      studentSubjectName: selectedSubject,
+      chapterName: "All",
+      section: "All"
+    });
+  }
+
+  activateChapterTest(
+    selectedSchoolKey?: string,
+    selectedStudentClassKey?: string,
+    selectedSubject?: string,
+    selectedChapter?: string,
+  ) {
+    this.firebase.database.ref(
+      "schools/" + selectedSchoolKey +
+      "/studentClasses/" + selectedStudentClassKey +
+      "/tests/activeTest"
+    ).set({
+      schoolEMIS: selectedSchoolKey,
+      studentClassName: selectedStudentClassKey,
+      studentSubjectName: selectedSubject,
+      chapterName: selectedChapter,
+      section: "All"
+    });
+  }
+
+  activateChaptersTest(
+    selectedSchoolKey?: string,
+    selectedStudentClassKey?: string,
+    selectedSubject?: string,
+    selectedChapters?: string,
+  ) {
+    this.firebase.database.ref(
+      "schools/" + selectedSchoolKey +
+      "/studentClasses/" + selectedStudentClassKey +
+      "/tests/activeTest"
+    ).set({
+      schoolEMIS: selectedSchoolKey,
+      studentClassName: selectedStudentClassKey,
+      studentSubjectName: selectedSubject,
+      chapterName: selectedChapters,
+      section: "All"
+    });
+  }
+
+  activateSectionTest(
     selectedSchoolKey?: string,
     selectedStudentClassKey?: string,
     selectedSubject?: string,
@@ -50,15 +106,15 @@ export class TestService {
     selectedSection?: string
   ) {
     this.firebase.database.ref(
-      "schools/"+selectedSchoolKey+
-      "/studentClasses/"+ selectedStudentClassKey +
+      "schools/" + selectedSchoolKey +
+      "/studentClasses/" + selectedStudentClassKey +
       "/tests/activeTest"
-      ).set({
-        schoolEMIS: selectedSchoolKey,
-        studentClassName: selectedStudentClassKey,
-        studentSubjectName: selectedSubject,
-        chapterName: selectedChapter,
-        section: selectedSection
+    ).set({
+      schoolEMIS: selectedSchoolKey,
+      studentClassName: selectedStudentClassKey,
+      studentSubjectName: selectedSubject,
+      chapterName: selectedChapter,
+      section: selectedSection
     });
   }
 
