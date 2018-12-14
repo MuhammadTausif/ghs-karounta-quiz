@@ -319,7 +319,7 @@ export class TakeQuizComponent implements OnInit {
 
   submitAnswer(selectedAnswer?: string) {
     if (this.questions.length > 0) {
-      this.quizService.submitAnswer(
+      this.quizService.submitUniqueAnswer(
         this.selectedStudentNumber,
         this.answeredQuestion,
         // this.selectedOption.value,

@@ -57,5 +57,4 @@ export class SubjectsListInClassComponent implements OnInit {
       );
   }
 
-
 }

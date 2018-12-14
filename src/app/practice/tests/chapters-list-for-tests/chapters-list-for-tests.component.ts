@@ -5,6 +5,7 @@ import { StudentClassService } from '../../shared/services/student-class.service
 import { Router } from '@angular/router';
 import { Chapter } from '../../shared/models/chapter.model';
 import { SubjectService } from '../../shared/services/subject.service';
+import { TestService } from '../../shared/services/test.service';
 
 @Component({
   selector: 'app-chapters-list-for-tests',
@@ -24,6 +25,7 @@ export class ChaptersListForTestsComponent implements OnInit {
     private chapterService: ChapterService,
     private studentClassService: StudentClassService,
     private subjectService: SubjectService,
+    private testService: TestService,
     private router: Router
   ) { }
 
@@ -40,6 +42,15 @@ export class ChaptersListForTestsComponent implements OnInit {
         });
         console.log(this.chaptersList);
       });
+  }
+
+  activateChapterTest(selectedChapterName: string){
+    this.testService.activateChapterTest(
+      "37230015",
+      this.studentClassService.selectedStudentClassKey,
+      this.subjectService.selectedSubjectName,
+      selectedChapterName
+      );
   }
   
   openSectionsList(selectedChapterName: string){
