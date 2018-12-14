@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Question } from '../models/question.model';
 import { Student } from '../models/student.model';
+import { Result } from '../models/result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,18 @@ export class QuizService {
     });
   }
 
+  startQuiz(
+    result: Result,
+  ) {
+    this.firebase.database.ref(
+      `schools/${result.schoolEMIS}/studentClasses/${result.studentClassName}/Students/${result.studentRollNo}/Subjects/${result.studentSubjectName}/answers/${result.startDateTime}`
+    ).set({
+      chapter: result.chapter,
+      section: result.section,
+      dateAndTime: result.startDateTime
+    });
+  }
+  
   submitUniqueAnswer(
     studentRollNo: string,
     question: Question,

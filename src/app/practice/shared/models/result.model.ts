@@ -2,11 +2,19 @@ import { Exam } from "./exam";
 import { Answer } from "./answer.model";
 
 export class Result {
-    constructor(parameters) {
+    constructor() {
         
     }
 
     $key: string;
+    schoolEMIS: string;
+    studentClassName: string;
+    studentRollNo: string;
+    studentSubjectName: string;
+    chapter: string;
+    section: string;
+    startDateTime: string;
+
     answers: Answer[];
 
     qestion1: string;

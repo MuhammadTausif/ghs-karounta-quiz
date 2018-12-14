@@ -18,6 +18,7 @@ import { SectionService } from '../../../shared/services/section.service';
 import { StudentClassService } from '../../../shared/services/student-class.service';
 import { StudentService } from '../../../shared/services/student.service';
 import { SubjectService } from '../../../shared/services/subject.service';
+import { Result } from 'src/app/practice/shared/models/result.model';
 
 @Component({
   selector: 'app-take-quiz',
@@ -45,6 +46,7 @@ export class TakeQuizComponent implements OnInit {
   question: Question;
   answeredQuestion: Question = new Question;
   activeTest: Test[];
+  result: Result;
 
   // quiz status
   startQuizStatus = false;
@@ -293,13 +295,6 @@ export class TakeQuizComponent implements OnInit {
   }
 
   startQuiz() {
-    // this.getQuestionsList(
-    //   "37230015",
-    //   this.selectedStudentClassKey,
-    //   this.selectedSubject,
-    //   this.selectedChapter,
-    //   this.selectedSection
-    // );
 
     this.startQuizStatus = true;
 
@@ -315,6 +310,16 @@ export class TakeQuizComponent implements OnInit {
     this.answeredQuestion.studentSubjectName = this.selectedSubject;
     this.answeredQuestion.chapterName = this.selectedChapter;
     this.answeredQuestion.sectionName = this.selectedSection;
+
+    this.result = new Result();
+    this.result.schoolEMIS = "37230015";
+    this.result.studentClassName = this.studentsClassService.selectedStudentClassKey;
+    this.result.studentRollNo = this.studentService.selectedStudentKey;
+    this.result.studentSubjectName = this.selectedSubject;
+    this.result.chapter = this.selectedChapter;
+    this.result.section = this.selectedSection;
+    this.result.startDateTime = this.startDateTime.toString();
+    this.quizService.startQuiz(this.result);
   }
 
   submitAnswer(selectedAnswer?: string) {
