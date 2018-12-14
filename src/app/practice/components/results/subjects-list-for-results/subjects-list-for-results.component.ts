@@ -5,54 +5,48 @@ import { StudentService } from 'src/app/practice/shared/services/student.service
 import { StudentClass } from 'src/app/practice/shared/models/studentClass.model';
 import { Subject } from 'src/app/practice/shared/models/subject.model';
 import { SubjectService } from 'src/app/practice/shared/services/subject.service';
-import { TestService } from 'src/app/practice/shared/services/test.service';
-import { Test } from 'src/app/practice/shared/models/test.model';
-import { Answer } from 'src/app/practice/shared/models/answer.model';
-import { Result } from 'src/app/practice/shared/models/result.model';
 
 @Component({
-  selector: 'app-results-list',
-  templateUrl: './results-list.component.html',
-  styleUrls: ['./results-list.component.css']
+  selector: 'app-subjects-list-for-results',
+  templateUrl: './subjects-list-for-results.component.html',
+  styleUrls: ['./subjects-list-for-results.component.css']
 })
-export class ResultsListComponent implements OnInit {
+
+export class SubjectsListForResultsComponent implements OnInit {
 
   public selectedStudentClassKey: string = this.studentsClassService.selectedStudentClassKey;
   public selectedStudentNumber: string = this.studentService.selectedStudentKey;
   public selectedStudentName: string = this.studentService.selectedStudentName;
-  public selectedSubjectName: string = this.subjectService.selectedSubjectName;
 
   public studentsClass: StudentClass;
   public studentSubjectList: Subject[];
-  public subjectResultsList: Result[];
 
-  displayedColumns: string[] = ['number', 'datetime'];
+  displayedColumns: string[] = ['number', 'name', 'result', 'action'];
 
   constructor(
     private studentsClassService: StudentClassService,
     private studentService: StudentService,
     private subjectService: SubjectService,
-    private testService: TestService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    var x = this.testService.getTestsOfSubjectOfStudent(this.selectedStudentClassKey, this.selectedSubjectName, this.selectedStudentNumber);
+    var x = this.subjectService.getSubjectsListofStudent("37230015", this.selectedStudentClassKey, this.selectedStudentNumber);
     x.snapshotChanges().subscribe(
       item => {
-        this.subjectResultsList = [];
+        this.studentSubjectList = [];
         item.forEach(element => {
           var y = element.payload.toJSON();
-          console.log(y);          
           y["$key"] = element.key;
-          this.subjectResultsList.push(y as Result);
+          this.studentSubjectList.push(y as Subject);
         });
-        // console.log("Answers: "+this.subjectResultsList);
+        // console.log(this.studentsList);
       });
   }
 
-  openSubjectResults(selectedSubjectName?: string) {
+  openSubjectResults(selectedSubjectName?: string ){
     this.subjectService.selectedSubjectName = selectedSubjectName;
-    this.router.navigate(['/tests-result']);
+    this.router.navigate(['/results-list']);
   }
+
 }

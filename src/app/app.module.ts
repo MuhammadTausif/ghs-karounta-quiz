@@ -67,7 +67,7 @@ import { MobileComponent } from './practice/routing-progress-bar/mobile/mobile.c
 import { AcComponent } from './practice/routing-progress-bar/ac/ac.component';
 import { TvComponent } from './practice/routing-progress-bar/tv/tv.component';
 import { MyLoginComponent } from './practice/components/my-login/my-login.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserLoginComponent } from './practice/components/users/user-login/user-login.component';
 import { UserProfileComponent } from './practice/components/users/user-profile/user-profile.component';
 import { MyAuthService } from './practice/core/my-auth.service';
@@ -84,6 +84,7 @@ import { RegisterPracticeComponent } from './practice/auth-practice/register-pra
 import { RegisterStudentComponent } from './practice/components/register-student/register-student.component';
 import { QuestionsListComponent } from './practice/components/questions/questions-list/questions-list.component';
 import { ResultsListComponent } from './practice/components/results/results-list/results-list.component';
+import { SubjectsListForResultsComponent } from './practice/components/results/subjects-list-for-results/subjects-list-for-results.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import { ResultsListComponent } from './practice/components/results/results-list
     RegisterPracticeComponent,
     RegisterStudentComponent,
     QuestionsListComponent,
-    ResultsListComponent
+    ResultsListComponent,
+    SubjectsListForResultsComponent
   ],
   imports: [
     // ToastrModule.forRoot(),
@@ -174,10 +176,10 @@ import { ResultsListComponent } from './practice/components/results/results-list
     MatButtonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule ,
+    FlexLayoutModule,
     MatSelectModule, MatRadioModule, MatProgressSpinnerModule,
-    MatDialogModule, MatDividerModule,    MatExpansionModule, MatTabsModule, MatButtonToggleModule,
-     MatStepperModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatDialogModule, MatDividerModule, MatExpansionModule, MatTabsModule, MatButtonToggleModule,
+    MatStepperModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatChipsModule, MatSelectModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule
     , MatTableModule, MatPaginatorModule, MatSortModule,
     // Routing progress bar

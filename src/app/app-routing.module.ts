@@ -38,6 +38,7 @@ import { RegisterStudentComponent } from './practice/components/register-student
 import { MyAuthGuard } from './practice/core/my-auth.guard';
 import { QuestionsListComponent } from './practice/components/questions/questions-list/questions-list.component';
 import { ResultsListComponent } from './practice/components/results/results-list/results-list.component';
+import { SubjectsListForResultsComponent } from './practice/components/results/subjects-list-for-results/subjects-list-for-results.component';
 
 const appRoutes: Routes = [
 
@@ -49,13 +50,15 @@ const appRoutes: Routes = [
   { path: 'classes-list-for-tests', component: ClassesListForTestsComponent },
   { path: 'subjects-list-for-tests', component: SubjectsListForTestsComponent },
   { path: 'tests-list-for-tests', component: ListTestsComponent },
-  { path: 'schools-list', component: SchoolsListComponent},
+  { path: 'schools-list', component: SchoolsListComponent },
   { path: 'subjects-list-in-classes', component: SubjectsListInClassComponent },
   { path: 'chapters-list-of-subjects', component: ChaptersListForTestsComponent },
   { path: 'sections-list-of-chapters', component: SectionsListForTestsComponent },
   { path: 'questions-list-of-sections', component: QuestionsListComponent },
   { path: 'questions-list-of-sections', component: QuestionsListComponent },
+  { path: 'subjects-list-for-results', component: SubjectsListForResultsComponent },
   { path: 'results-list', component: ResultsListComponent },
+
 
   // Add element routes
   { path: 'add-student', component: AddStudentComponent },

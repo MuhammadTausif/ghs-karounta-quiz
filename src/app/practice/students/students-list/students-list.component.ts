@@ -48,10 +48,10 @@ export class StudentsListComponent implements OnInit {
     this.router.navigate(['/take-quiz']);
   }
 
-  openResults(selectedStudentKey?: string, selectedStudentName?: string){
+  openSubjectForResults(selectedStudentKey?: string, selectedStudentName?: string){
     this.studentService.selectedStudentKey = selectedStudentKey;
     this.studentService.selectedStudentName = selectedStudentName;
-    this.router.navigate(['/results-list']);
+    this.router.navigate(['/subjects-list-for-results']);
   }
 }
 
