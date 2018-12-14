@@ -289,7 +289,7 @@ export class TakeQuizComponent implements OnInit {
           const y = element.payload.toJSON();
           y['$key'] = element.key;
           this.questions.push(y as Question);
-          if (this.totalQuestionLimit > this.questions.length - 1){
+          if (this.totalQuestionLimit > this.questions.length - 1) {
             this.totalQuestions = this.questions.length;
           }
         });
@@ -326,7 +326,7 @@ export class TakeQuizComponent implements OnInit {
   }
 
   submitAnswer(selectedAnswer?: string) {
-    if (this.questions.length > 0 && this.pager.index < this.totalQuestionLimit) {
+    if (this.questions.length + 1 > 0 && this.pager.index - 1 < this.totalQuestionLimit) {
       this.quizService.submitUniqueAnswer(
         this.selectedStudentNumber,
         this.answeredQuestion,
@@ -334,19 +334,25 @@ export class TakeQuizComponent implements OnInit {
         selectedAnswer,
         this.startDateTime.toString()
       );
-      this.pager.index++;
-      const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
-      this.selectedQuestion = this.questions[selectedQuestionIndex];
-      this.questions.splice(selectedQuestionIndex, 1);
-      this.answeredQuestion.$key = this.selectedQuestion.$key;
-      this.answeredQuestion.questionName = this.selectedQuestion.questionName;
-      this.answeredQuestion.schoolEMIS = "37230015";
-      this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
-      this.answeredQuestion.studentSubjectName = this.selectedSubject;
-      this.answeredQuestion.chapterName = this.selectedChapter;
-      this.answeredQuestion.sectionName = this.selectedSection;
+      this.quizCompleted = true;
+      if (this.questions.length > 0 && this.pager.index < this.totalQuestionLimit) {
+        this.pager.index++;
+        const selectedQuestionIndex = Math.floor(Math.random() * this.questions.length);
+        this.selectedQuestion = this.questions[selectedQuestionIndex];
+        this.questions.splice(selectedQuestionIndex, 1);
+        this.answeredQuestion.$key = this.selectedQuestion.$key;
+        this.answeredQuestion.questionName = this.selectedQuestion.questionName;
+        this.answeredQuestion.schoolEMIS = "37230015";
+        this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
+        this.answeredQuestion.studentSubjectName = this.selectedSubject;
+        this.answeredQuestion.chapterName = this.selectedChapter;
+        this.answeredQuestion.sectionName = this.selectedSection;
 
-      this.quizCompleted = false;
+        this.quizCompleted = false;
+      }
+      if (this.quizCompleted == true) {
+        this.router.navigate(['/view-result']);
+      }
     } else {
       this.quizCompleted = true;
       this.router.navigate(['/view-result']);
