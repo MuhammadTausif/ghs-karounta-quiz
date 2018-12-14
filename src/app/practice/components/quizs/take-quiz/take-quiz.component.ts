@@ -289,7 +289,9 @@ export class TakeQuizComponent implements OnInit {
           const y = element.payload.toJSON();
           y['$key'] = element.key;
           this.questions.push(y as Question);
-          // this.totalQuestions = this.questions.length;
+          if (this.totalQuestionLimit > this.questions.length - 1){
+            this.totalQuestions = this.questions.length;
+          }
         });
         console.log(this.questions);
       });
