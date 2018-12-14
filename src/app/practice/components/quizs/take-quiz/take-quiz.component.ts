@@ -47,12 +47,13 @@ export class TakeQuizComponent implements OnInit {
   answeredQuestion: Question = new Question;
   activeTest: Test[];
   result: Result;
+  totalQuestionLimit: number = 5;
+  totalQuestions: number = this.totalQuestionLimit; // = this.questions.length;
 
   // quiz status
   startQuizStatus = false;
   quizCompleted = false;
 
-  totalQuestions: number; // = this.questions.length;
   startDateTime: string;
 
   pager = {
@@ -288,7 +289,7 @@ export class TakeQuizComponent implements OnInit {
           const y = element.payload.toJSON();
           y['$key'] = element.key;
           this.questions.push(y as Question);
-          this.totalQuestions = this.questions.length;
+          // this.totalQuestions = this.questions.length;
         });
         console.log(this.questions);
       });
@@ -323,7 +324,7 @@ export class TakeQuizComponent implements OnInit {
   }
 
   submitAnswer(selectedAnswer?: string) {
-    if (this.questions.length > 0 && this.pager.index < 5) {
+    if (this.questions.length > 0 && this.pager.index < this.totalQuestionLimit) {
       this.quizService.submitUniqueAnswer(
         this.selectedStudentNumber,
         this.answeredQuestion,
