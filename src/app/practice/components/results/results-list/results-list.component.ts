@@ -26,7 +26,7 @@ export class ResultsListComponent implements OnInit {
   public studentSubjectList: Subject[];
   public subjectResultsList: Result[];
 
-  displayedColumns: string[] = ['number', 'datetime'];
+  displayedColumns: string[] = ['number', 'datetime', 'chapters', 'sections'];
 
   constructor(
     private studentsClassService: StudentClassService,
