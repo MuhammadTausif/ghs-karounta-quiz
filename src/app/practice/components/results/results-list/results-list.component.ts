@@ -57,6 +57,7 @@ export class ResultsListComponent implements OnInit {
   }
 
   openAnswersList(resultKey: string){
-    // this.
+    this.testService.selectedResultKey = resultKey;
+    this.router.navigate(['/answers-list']);
   }
 }

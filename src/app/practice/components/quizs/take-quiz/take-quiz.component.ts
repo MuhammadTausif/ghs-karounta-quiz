@@ -351,11 +351,11 @@ export class TakeQuizComponent implements OnInit {
         this.quizCompleted = false;
       }
       if (this.quizCompleted == true) {
-        this.router.navigate(['/view-result']);
+        this.router.navigate(['/answers-list']);
       }
     } else {
       this.quizCompleted = true;
-      this.router.navigate(['/view-result']);
+      this.router.navigate(['/answers-list']);
     }
   }
 

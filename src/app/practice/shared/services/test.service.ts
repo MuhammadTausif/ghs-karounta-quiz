@@ -8,6 +8,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class TestService {
 
+  selectedResultKey: string;
+  
   constructor(private firebase: AngularFireDatabase) { }
 
   insertTest(test: Test) {
@@ -16,11 +18,11 @@ export class TestService {
     /Subjects/${test.studentSubjectName}
     /chapters/${test.chapterName}
     /tests`).push({
-        noOfQuestion: test.noOfQuestions,
-        totalTime: test.totalTime,
-        creationTime: test.creationTime,
-        chapterSection: test.chapterSections
-      });
+      noOfQuestion: test.noOfQuestions,
+      totalTime: test.totalTime,
+      creationTime: test.creationTime,
+      chapterSection: test.chapterSections
+    });
   }
 
   insertTestOfSubect(test: Test, selectedSubjectName: string) {
@@ -28,11 +30,11 @@ export class TestService {
     /studentClasses/${test.studentClassName}
     /Subjects/${test.studentSubjectName}
     /tests`).push({
-        noOfQuestion: test.noOfQuestions,
-        totalTime: test.totalTime,
-        creationTime: test.creationTime,
-        chapterSection: test.chapterSections
-      });
+      noOfQuestion: test.noOfQuestions,
+      totalTime: test.totalTime,
+      creationTime: test.creationTime,
+      chapterSection: test.chapterSections
+    });
   }
 
 
@@ -124,17 +126,18 @@ export class TestService {
 
   getTestsOfSubjectOfStudent(className: string, subjectName: string, studentKey: string) {
     return this.firebase.list("schools/37230015/studentClasses/" +
-    className + "/Students/"+
-    studentKey + "/Subjects/"+
-    subjectName + "/results");
+      className + "/Students/" +
+      studentKey + "/Subjects/" +
+      subjectName + "/results");
   }
 
-  getAnswersOfTest(className: string, subjectName: string, studentKey: string, resultKey: string) {
+  getAnswersOfTest(className: string, studentKey: string, subjectName: string, resultKey: string) {
     return this.firebase.list("schools/37230015/studentClasses/" +
-    className + "/Students/"+
-    studentKey + "/Subjects/"+
-    subjectName + "/results/answers/"+
-    resultKey);
+      className + "/Students/" +
+      studentKey + "/Subjects/" +
+      subjectName + "/results/" +
+      resultKey + "/answers"
+    );
   }
 
 
