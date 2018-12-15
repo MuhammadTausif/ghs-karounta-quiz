@@ -351,10 +351,12 @@ export class TakeQuizComponent implements OnInit {
         this.quizCompleted = false;
       }
       if (this.quizCompleted == true) {
+        this.testService.selectedResultKey = this.startDateTime.toString();
         this.router.navigate(['/answers-list']);
       }
     } else {
       this.quizCompleted = true;
+      this.testService.selectedResultKey = this.startDateTime.toString();
       this.router.navigate(['/answers-list']);
     }
   }
