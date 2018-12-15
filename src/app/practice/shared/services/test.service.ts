@@ -126,7 +126,15 @@ export class TestService {
     return this.firebase.list("schools/37230015/studentClasses/" +
     className + "/Students/"+
     studentKey + "/Subjects/"+
-    subjectName + "/answers");
+    subjectName + "/results");
+  }
+
+  getAnswersOfTest(className: string, subjectName: string, studentKey: string, resultKey: string) {
+    return this.firebase.list("schools/37230015/studentClasses/" +
+    className + "/Students/"+
+    studentKey + "/Subjects/"+
+    subjectName + "/results/answers/"+
+    resultKey);
   }
 
 

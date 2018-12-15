@@ -29,7 +29,7 @@ export class QuizService {
     result: Result,
   ) {
     this.firebase.database.ref(
-      `schools/${result.schoolEMIS}/studentClasses/${result.studentClassName}/Students/${result.studentRollNo}/Subjects/${result.studentSubjectName}/answers/${result.startDateTime}`
+      `schools/${result.schoolEMIS}/studentClasses/${result.studentClassName}/Students/${result.studentRollNo}/Subjects/${result.studentSubjectName}/results/${result.startDateTime}`
     ).set({
       chapter: result.chapter,
       section: result.section,
@@ -44,7 +44,7 @@ export class QuizService {
     startDateTime: string
   ) {
     this.firebase.database.ref(
-      `schools/${question.schoolEMIS}/studentClasses/${question.studentClassName}/Students/${studentRollNo}/Subjects/${question.studentSubjectName}/answers/${startDateTime}`
+      `schools/${question.schoolEMIS}/studentClasses/${question.studentClassName}/Students/${studentRollNo}/Subjects/${question.studentSubjectName}/results/${startDateTime}/answers`
     ).push({
       chapters: question.chapterName,
       sections: question.sectionName,

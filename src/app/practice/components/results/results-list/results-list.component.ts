@@ -26,7 +26,7 @@ export class ResultsListComponent implements OnInit {
   public studentSubjectList: Subject[];
   public subjectResultsList: Result[];
 
-  displayedColumns: string[] = ['number', 'datetime', 'chapters', 'sections'];
+  displayedColumns: string[] = ['number', 'datetime', 'chapters', 'sections', 'result'];
 
   constructor(
     private studentsClassService: StudentClassService,
@@ -54,5 +54,9 @@ export class ResultsListComponent implements OnInit {
   openSubjectResults(selectedSubjectName?: string) {
     this.subjectService.selectedSubjectName = selectedSubjectName;
     this.router.navigate(['/tests-result']);
+  }
+
+  openAnswersList(resultKey: string){
+    // this.
   }
 }
