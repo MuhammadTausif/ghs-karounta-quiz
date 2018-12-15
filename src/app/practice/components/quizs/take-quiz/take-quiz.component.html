@@ -21,16 +21,16 @@
     <div *ngIf="selectedQuestion">
       <mat-card> <strong>{{selectedQuestion.$key}} : {{selectedQuestion.questionName}} </strong> </mat-card>
       <mat-card>
-        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer('A')">{{selectedQuestion.optionA}}</button>
+        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer(selectedQuestion.optionA)">{{selectedQuestion.optionA}}</button>
       </mat-card>
       <mat-card>
-        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer('B')">{{selectedQuestion.optionB}}</button>
+        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer(selectedQuestion.optionB)">{{selectedQuestion.optionB}}</button>
       </mat-card>
       <mat-card>
-        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer('C')">{{selectedQuestion.optionC}}</button>
+        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer(selectedQuestion.optionC)">{{selectedQuestion.optionC}}</button>
       </mat-card>
       <mat-card>
-        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer('D')">{{selectedQuestion.optionD}}</button>
+        <button type="submit" mat-raised-button color="primary" class="full-width" (click)="submitAnswer(selectedQuestion.optionD)">{{selectedQuestion.optionD}}</button>
       </mat-card>
     </div>
   </div>

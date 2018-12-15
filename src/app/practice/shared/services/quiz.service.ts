@@ -49,6 +49,7 @@ export class QuizService {
       chapters: question.chapterName,
       sections: question.sectionName,
       questionKey: question.$key,
+      optionA: question.optionA,
       answeredOption: option,
       questionText: question.questionName
     });

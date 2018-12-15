@@ -293,7 +293,7 @@ export class TakeQuizComponent implements OnInit {
             this.totalQuestions = this.questions.length;
           }
         });
-        console.log(this.questions);
+        // console.log(this.questions);
       });
   }
 
@@ -310,6 +310,7 @@ export class TakeQuizComponent implements OnInit {
     this.answeredQuestion.questionName = this.selectedQuestion.questionName;
     this.answeredQuestion.schoolEMIS = "37230015";
     this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
+    this.answeredQuestion.optionA = this.selectedQuestion.optionA;
     this.answeredQuestion.studentSubjectName = this.selectedSubject;
     this.answeredQuestion.chapterName = this.selectedChapter;
     this.answeredQuestion.sectionName = this.selectedSection;
@@ -342,6 +343,7 @@ export class TakeQuizComponent implements OnInit {
         this.questions.splice(selectedQuestionIndex, 1);
         this.answeredQuestion.$key = this.selectedQuestion.$key;
         this.answeredQuestion.questionName = this.selectedQuestion.questionName;
+        this.answeredQuestion.optionA = this.selectedQuestion.optionA;
         this.answeredQuestion.schoolEMIS = "37230015";
         this.answeredQuestion.studentClassName = this.selectedStudentClassKey;
         this.answeredQuestion.studentSubjectName = this.selectedSubject;

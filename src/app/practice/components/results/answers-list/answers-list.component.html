@@ -57,13 +57,15 @@
     <!-- Date Column -->
     <ng-container matColumnDef="answer">
       <th mat-header-cell *matHeaderCellDef> Answer </th>
-      <td mat-cell *matCellDef="let element"> A </td>
+      <td mat-cell *matCellDef="let element"> {{element.optionA}} </td>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="yourAnswer">
       <th mat-header-cell *matHeaderCellDef> Your Answer </th>
-      <td mat-cell *matCellDef="let element"> {{element.answeredOption}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.answeredOption}}
+          <div [ngStyle]="{'background-color':'green'}"></<div>
+      </td>
     </ng-container>
 
 
