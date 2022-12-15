@@ -137,5 +137,8 @@
       }
     }
   },
-  "defaultProject": "ghs-karounta-quiz"
+  "defaultProject": "ghs-karounta-quiz",
+  "cli": {
+    "analytics": "626ae9e3-a0bb-4f0c-8769-9df12590bf8d"
+  }
 }
